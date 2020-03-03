@@ -5,56 +5,82 @@
 
       <h1>Gestión de estudiantes</h1>
       {{mensaje}}
-      {{estudiante.nombre}}
+      {{evaluador.nombre}}
       <br />
 
       <b-form action="javascript:void(0)" @submit="crearEstudiante()">
-        <b-form-group label="Identificación" label-for="id">
-          <b-form-input
-            class="form-control"
-            type="number"
-            v-model="estudiante.id"
-            placeholder="Ingrese su identificación"
-            id="id"
-          />
-        </b-form-group>
         <b-form-group label="Nombre" label-for="nombre">
           <b-form-input
             class="form-control"
-            v-model="estudiante.nombre"
+            type="text"
+            v-model="evaluador.nombre"
             placeholder="Ingrese su nombre"
             id="nombre"
           />
         </b-form-group>
-        <b-form-group label="Edad" label-for="edad">
+        <b-form-group label="Apellido" label-for="apellido">
           <b-form-input
             class="form-control"
-            type="number"
-            v-model="estudiante.edad"
-            placeholder="Ingrese su edad"
-            id="edad"
+            v-model="evaluador.apellido"
+            placeholder="Ingrese su apellido"
+            id="apellido"
           />
         </b-form-group>
-
-        <b-form-group label="Correo" label-for="correo">
+        <b-form-group label="Email" label-for="email">
           <b-form-input
             class="form-control"
             type="email"
-            v-model="estudiante.correo"
-            id="correo"
-            placeholder="Ingrese su correo"
+            v-model="evaluador.email"
+            placeholder="Ingrese su email"
+            id="email"
           />
         </b-form-group>
 
-        <b-form-group>
-          <b-form-select v-model="estudiante.carrera" :options="opciones_carrera"></b-form-select>
+        <b-form-group label="Dirección" label-for="direccion">
+          <b-form-input
+            class="form-control"
+            type="text"
+            v-model="evaluador.direccion"
+            id="direccion"
+            placeholder="Ingrese su dirección"
+          />
+        </b-form-group>
+
+        <b-form-group label="Afiliación institucional" label-for="afiliacion">
+          <b-form-input
+            class="form-control"
+            type="text"
+            v-model="evaluador.afiliacion"
+            id="afiliacion"
+            placeholder="Ingrese su afiliación institucional"
+          />
+        </b-form-group>
+
+        <b-form-group label="Cargo" label-for="cargo">
+          <b-form-input
+            class="form-control"
+            type="text"
+            v-model="evaluador.cargo"
+            id="cargo"
+            placeholder="Ingrese su cargo"
+          />
+        </b-form-group>
+
+        <b-form-group label="Publicaciones previas" label-for="publicaciones">
+          <b-form-textarea
+            class="form-control"
+            type="textbox"
+            v-model="evaluador.publicaciones"
+            id="publicaciones"
+            placeholder="Ingrese sus publicaciones anteriores"
+          ></b-form-textarea>
         </b-form-group>
 
         <b-button type="submit" variant="primary" v-if="!enEdicion">Crear estudiante</b-button>
         <b-button @click="actualizarEstudiante()" variant="primary" v-else>Actualizar estudiante</b-button>
       </b-form>
 
-      <b-table striped hover :items="lista_estudiantes">
+      <b-table striped hover :items="lista_evaluadores">
         <template v-slot:cell(acciones)="row">
           <b-button size="sm" @click="cargarEstudiante(row)" class="mr-2">Modificar</b-button>
           <b-button size="sm" @click="eliminarEstudiante(row)" class="mr-2">Eliminar</b-button>

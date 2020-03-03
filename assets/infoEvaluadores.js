@@ -1,71 +1,74 @@
 export default {
     data() {
       return {
-        mensaje: "Administración de estudiantes",
+        mensaje: "Formulario nuevos evaluadores",
         enEdicion: false,
-        estudiante: {
-          id: "",
-          nombre: "",
-          edad: 0,
-          correo: "",
-          carrera: null,
-          acciones: true
+        evaluador: {
+            nombre: "",
+            apellido: "",
+            email: "",
+            direccion: "",
+            afiliacion: "",
+            cargo: "",
+            publicaciones: "",
+            acciones: true
         },
-        lista_estudiantes: [
+        lista_evaluadores: [
           {
-            id: "0001",
-            nombre: "santiago",
-            edad: 0,
-            correo: "santiago",
-            carrera: "001",
+            nombre: "Juan",
+            apellido: "Mejia",
+            email: "mejiajuan@gmail.com",
+            dirrecion: "cr 12 # 38-14",
+            afiliacion: "UdeA",
+            cargo: "Profesor",
+            publicaciones: "libro1:descripcion. libro2:descripcion",
             acciones: true
           }
         ],
-        opciones_carrera: [
-          { value: null, text: "Seleccione una carrera", disabled: true },
-          { value: "001", text: "Ingeniería de sistemas" },
-          { value: "002", text: "Derecho" },
-          { value: "003", text: "Comunicación" }
-        ]
+        
       };
     },
     methods: {
       crearEstudiante() {
-        this.lista_estudiantes.push(this.estudiante);
-        this.estudiante = {
-          id: "",
-          nombre: "",
-          edad: 0,
-          correo: "",
-          carrera: null,
-          acciones: true
+        this.lista_evaluadores.push(this.evaluador);
+        this.evaluador = {
+            nombre: "",
+            apellido: "",
+            email: "",
+            direccion: "",
+            afiliacion: "",
+            cargo: "",
+            publicaciones: "",
+            acciones: true
         };
       },
       eliminarEstudiante({ item }) {
-        let posicion = this.lista_estudiantes.findIndex(
-          estudiante => estudiante.id == item.id
+        let posicion = this.lista_evaluadores.findIndex(
+          evaluador => evaluador.id == item.id
         );
-        this.lista_estudiantes.splice(posicion, 1);
+        this.lista_evaluadores.splice(posicion, 1);
       },
       cargarEstudiante({ item }) {
-        let estu = this.lista_estudiantes.find(
-          estudiante => estudiante.id == item.id
+        let auxEvalua = this.lista_evaluadores.find(
+          evaluador => evaluador.id == item.id
         );
         this.enEdicion = true;
-        this.estudiante = Object.assign({}, estu);
+        this.evaluador = Object.assign({}, auxEvalua);
       },
       actualizarEstudiante() {
-        let posicion = this.lista_estudiantes.findIndex(
-          estudiante => estudiante.id == this.estudiante.id
+        let posicion = this.lista_evaluadores.findIndex(
+          evaluador => evaluador.id == this.evaluador.id
         );
-        this.lista_estudiantes.splice(posicion, 1, this.estudiante);
-        this.estudiante = {
-          id: "",
-          nombre: "",
-          edad: 0,
-          correo: "",
-          carrera: null,
-          acciones: true
+        this.lista_evaluadores.splice(posicion, 1, this.evaluador);
+        this.evaluador = {
+            nombre: "",
+            apellido: "",
+            email: "",
+            direccion: "",
+            afiliacion: "",
+            cargo: "",
+            publicaciones: "",
+            acciones: true
         };
  
       }
