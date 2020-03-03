@@ -1,23 +1,23 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        gestionDeEvaluacionSoft
-      </h1>
-      <h2 class="subtitle">
-        My shining Nuxt.js project
-      </h2>
-    </div>
+  <div>
+    <b-navbar toggleable="lg" type="dark" variant="info">
+      <b-collapse id="nav-collapse" is-nav>
+        <!-- Right aligned nav items -->
+        <b-navbar-nav class="ml-auto">
+          <b-navbar-brand href="#">Registro</b-navbar-brand>
+        <b-navbar-brand href="#">Propuesta publicación</b-navbar-brand>
+
+          
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Logo from "~/components/Logo.vue";
 
-export default {
-  
-}
+export default {};
 </script>
 
 <style>
@@ -31,8 +31,8 @@ export default {
 }
 
 .title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;
