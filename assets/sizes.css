@@ -1,0 +1,19 @@
+@media(min-width: 1900px){
+    .container{
+        max-width: 1800px;
+        
+    }
+}
+
+.container{
+    padding: 45px 0 100px 0;
+    align-content: center;
+}
+
+.summit-button{
+    margin: 20px 0 20px 0;
+}
+    
+.acciones{
+    margin: 5px 10px 5px 10px;
+}

@@ -36,6 +36,8 @@ export default {
     },
     methods: {
       crearCorrecion() {
+       
+        this.correcion.fecha_vencimiento =  this.formatDate()
         this.lista_correciones.push(this.correcion);
         this.correcion = {
             id_autor:"autor",
@@ -45,7 +47,7 @@ export default {
             fecha_vencimiento: "",
             organizacion_contenido: 0.0,
             estilo: 0.0,
-            aportes_de_obra:0.0,
+            aportes_de_obra:null,
             temporalidad:0.0,
             resultado_final:0.0,    
             acciones: true
@@ -77,13 +79,30 @@ export default {
             documento_guia: "",
             fecha_vencimiento: "",
             organizacion_contenido: 0.0,
-            estilo: 0.0,
-            aportes_de_obra:0.0,
+            estilo: null,
+            aportes_de_obra:null,
             temporalidad:0.0,
             resultado_final:0.0,    
             acciones: true
         };
-        //this.enEdicion = false
-      }
+        this.enEdicion = false
+      },
+       formatDate() {
+        var date = new Date(this.correcion.fecha)
+        date.setDate(date.getDate() + 16)
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+    
+        if (month.length < 2) 
+            month = '0' + month;
+        if (day.length < 2) 
+            day = '0' + day;
+    
+        return [year, month, day].join('-');
     }
+    }
+
+    
   };

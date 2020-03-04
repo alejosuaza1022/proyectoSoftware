@@ -6,6 +6,7 @@ export default {
         evaluador: {
             nombre: "",
             apellido: "",
+            cc: "",
             email: "",
             direccion: "",
             afiliacion: "",
@@ -17,6 +18,7 @@ export default {
           {
             nombre: "Juan",
             apellido: "Mejia",
+            cc: "110293",
             email: "mejiajuan@gmail.com",
             dirrecion: "cr 12 # 38-14",
             afiliacion: "UdeA",
@@ -34,6 +36,7 @@ export default {
         this.evaluador = {
             nombre: "",
             apellido: "",
+            cc: "",
             email: "",
             direccion: "",
             afiliacion: "",
@@ -44,13 +47,13 @@ export default {
       },
       eliminarEstudiante({ item }) {
         let posicion = this.lista_evaluadores.findIndex(
-          evaluador => evaluador.id == item.id
+          evaluador => evaluador.cc == item.cc
         );
         this.lista_evaluadores.splice(posicion, 1);
       },
       cargarEstudiante({ item }) {
         let auxEvalua = this.lista_evaluadores.find(
-          evaluador => evaluador.id == item.id
+          evaluador => evaluador.cc == item.cc
         );
         this.enEdicion = true;
         this.evaluador = Object.assign({}, auxEvalua);
@@ -58,12 +61,13 @@ export default {
       actualizarEstudiante() {
         this.enEdicion = false
         let posicion = this.lista_evaluadores.findIndex(
-          evaluador => evaluador.id == this.evaluador.id
+          evaluador => evaluador.cc == this.evaluador.cc
         );
         this.lista_evaluadores.splice(posicion, 1, this.evaluador);
         this.evaluador = {
             nombre: "",
             apellido: "",
+            cc: "",
             email: "",
             direccion: "",
             afiliacion: "",
