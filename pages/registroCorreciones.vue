@@ -25,15 +25,7 @@
             id="fecha"
           />
         </b-form-group>
-        <b-form-group label="fecha  de vencimiento" label-for="fecha_vencimiento">
-          <b-form-input
-            class="form-control"
-            type="date" 
-            v-model="correcion.fecha_vencimiento"
-            placeholder="Ingrese la fecha  de vencimiento"
-            id="fecha_vencimiento"
-          />
-        </b-form-group>
+       
         <b-form-group label="ingrese valores númericos para calificar" label-for="labelInfo">
 
         <b-form-group label="organización de contenido" label-for="organizacion_contenido">
@@ -60,6 +52,7 @@
           <b-form-input
             class="form-control"
             type="number"
+            v-bind:required="true"
             v-model="correcion.aportes_de_obra"
             id="aportes_de_obra"
             placeholder="Ingrese aportes de obra"
@@ -77,18 +70,19 @@
         </b-form-group>
         </b-form-group>
 
-        <b-button type="submit" variant="primary" v-if="!enEdicion">Crear estudiante</b-button>
+        <b-button type="submit" variant="primary" class="submit-button" v-if="!enEdicion">Crear estudiante</b-button>
         <b-button @click="actualizar_correcion()" variant="primary" v-else>Actualizar Correcion</b-button>
       </b-form>
 
       <b-table striped hover :items="lista_correciones">
         <template v-slot:cell(acciones)="row">
-          <b-button size="sm" @click="cargar_correcion(row)" class="mr-2">Modificar</b-button>
-          <b-button size="sm" @click="eliminar_correcion(row)" class="mr-2">Eliminar</b-button>
+          <b-button size="sm" @click="cargar_correcion(row)" class="mr-2 acciones">Modificar</b-button>
+          <b-button size="sm" @click="eliminar_correcion(row)" class="mr-2 acciones">Eliminar</b-button>
         </template>
       </b-table>
     </b-container>
   </div>
 </template>
+
 
 <script src="@/assets/registroCorreciones.js"/>
