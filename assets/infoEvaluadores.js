@@ -56,6 +56,7 @@ export default {
         this.evaluador = Object.assign({}, auxEvalua);
       },
       actualizarEstudiante() {
+        this.enEdicion = false
         let posicion = this.lista_evaluadores.findIndex(
           evaluador => evaluador.id == this.evaluador.id
         );

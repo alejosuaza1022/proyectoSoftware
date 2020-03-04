@@ -4,11 +4,9 @@
       <!-- Content here -->
 
       <h1>Gestión de estudiantes</h1>
-      {{mensaje}}
-      {{evaluador.nombre}}
       <br />
 
-      <b-form action="javascript:void(0)" @submit="crearEstudiante()">
+      <b-form action="javascript:void(0)" >
         <b-form-group label="Nombre" label-for="nombre">
           <b-form-input
             class="form-control"
@@ -76,8 +74,8 @@
           ></b-form-textarea>
         </b-form-group>
 
-        <b-button type="submit" variant="primary" v-if="!enEdicion">Crear estudiante</b-button>
-        <b-button @click="actualizarEstudiante()" variant="primary" v-else>Actualizar estudiante</b-button>
+        <b-button @click="crearEstudiante()" variant="primary" v-if="!enEdicion">Crear evaluador</b-button>
+        <b-button @click="actualizarEstudiante()" variant="primary" v-else>Actualizar evaluador</b-button>
       </b-form>
 
       <b-table striped hover :items="lista_evaluadores">
