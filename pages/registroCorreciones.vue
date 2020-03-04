@@ -6,7 +6,7 @@
       <h1>Gestión de correción de propuestas</h1>
       <br />
 
-      <b-form action="javascript:void(0)" @submit="crearCorrecion()">
+      <b-form action="javascript:void(0)" >
         <b-form-group label="id autor" label-for="id_autor">
           <b-form-input
             class="form-control"
@@ -77,7 +77,7 @@
         </b-form-group>
         </b-form-group>
 
-        <b-button type="submit" variant="primary" v-if="!enEdicion">Crear estudiante</b-button>
+        <b-button @onclick="crearCorrecion()" variant="primary" v-if="!enEdicion">Crear estudiante</b-button>
         <b-button @click="actualizar_correcion()" variant="primary" v-else>Actualizar Correcion</b-button>
       </b-form>
 
