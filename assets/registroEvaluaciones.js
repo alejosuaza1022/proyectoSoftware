@@ -5,15 +5,15 @@ export default {
         enEdicion: false,
         correcion: {
             id: "",
-            id_autor:"autor",
+            id_autor:"",
             fecha: "",
-            documento_guia: "",
+            documento_guia: "Seleccione una guía",
             fecha_vencimiento: "",
-            organizacion_contenido: 0.0,
-            estilo: 0.0,
-            aportes_de_obra:0.0,
-            temporalidad:0.0,
-            resultado_final:0.0,    
+            organizacion_contenido: null,
+            estilo: null,
+            aportes_de_obra:null,
+            temporalidad:null,
+            resultado_final:null,    
             acciones: true
         },
         lista_correciones: [
@@ -21,7 +21,7 @@ export default {
             id: "1",
             id_autor:"autor",
             fecha: "2020-03-03",
-            documento_guia: "vacio",
+            documento_guia: "guía 1",
             fecha_vencimiento: "2020-03-03",
             organizacion_contenido: 10,
             estilo: 10,
@@ -31,25 +31,30 @@ export default {
             acciones: true
           }
         ],
-        
+        opciones_carrera: [
+          { value: null, text: "Seleccione una guía", disabled: true },
+          { value: "001", text: " guía 1" },
+          { value: "002", text: " guía 2" },
+        ]
       };
     },
     methods: {
       crearCorrecion() {
-       
+        this.correcion.id = parseInt(this.lista_correciones[this.lista_correciones.length-1].id) + 1;
         this.correcion.fecha_vencimiento =  this.formatDate()
+        this.puntajeTotal();
         this.lista_correciones.push(this.correcion);
         this.correcion = {
             id_autor:"autor",
             id: "",
             fecha: "",
-            documento_guia: "",
+            documento_guia: "Seleccione una guía",
             fecha_vencimiento: "",
-            organizacion_contenido: 0.0,
-            estilo: 0.0,
+            organizacion_contenido: null,
+            estilo: null,
             aportes_de_obra:null,
-            temporalidad:0.0,
-            resultado_final:0.0,    
+            temporalidad:null,
+            resultado_final:null,    
             acciones: true
         }
       },
@@ -69,20 +74,21 @@ export default {
         this.correcion = Object.assign({}, auxCorre);
       },
       actualizar_correcion() {
-        
+        this.correcion.fecha_vencimiento =  this.formatDate()
+        this.puntajeTotal(); 
         this.lista_correciones.splice(this.get_position(this.correcion), 1, this.correcion);
         this.correcion = {
             id: "",
-            id_autor:"autor",
+            id_autor:"",
             id_propuesta: "",
             fecha: "",
-            documento_guia: "",
+            documento_guia: "Seleccione una guía",
             fecha_vencimiento: "",
-            organizacion_contenido: 0.0,
+            organizacion_contenido: null,
             estilo: null,
             aportes_de_obra:null,
-            temporalidad:0.0,
-            resultado_final:0.0,    
+            temporalidad:null,
+            resultado_final:null,    
             acciones: true
         };
         this.enEdicion = false
@@ -101,7 +107,17 @@ export default {
             day = '0' + day;
     
         return [year, month, day].join('-');
+    },
+
+    puntajeTotal(){
+      var p1 = parseFloat(this.correcion.organizacion_contenido)
+      var p2 = parseFloat(this.correcion.estilo)
+      var p3 = parseFloat(this.correcion.aportes_de_obra)
+      var p4 = parseFloat(this.correcion.temporalidad)
+
+      this.correcion.resultado_final = p1*0.125+p2*0.125+p3*0.125+p4*0.125
     }
+
     }
 
     
