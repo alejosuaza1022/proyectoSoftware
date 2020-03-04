@@ -1,16 +1,6 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-collapse id="nav-collapse" is-nav>
-        <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
-          <b-navbar-brand href="infoEvaluadores">Registro</b-navbar-brand>
-        <b-navbar-brand href="registroCorreciones">Propuesta publicación</b-navbar-brand>
-
-          
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
+    
   </div>
 </template>
 
