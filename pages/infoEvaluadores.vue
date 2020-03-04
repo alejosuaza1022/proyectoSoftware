@@ -1,9 +1,11 @@
+
 <template>
-  <div>
+
+  <div class="content">
     <b-container>
       <!-- Content here -->
 
-      <h1>Gestión de estudiantes</h1>
+      <h1>Formulario de evaluadores</h1>
       <br />
 
       <b-form action="javascript:void(0)" >
@@ -85,18 +87,29 @@
           ></b-form-textarea>
         </b-form-group>
 
-        <b-button @click="crearEstudiante()" variant="primary" v-if="!enEdicion">Crear evaluador</b-button>
-        <b-button @click="actualizarEstudiante()" variant="primary" v-else>Actualizar evaluador</b-button>
+        <b-button @click="crearEstudiante()" variant="primary" v-if="!enEdicion" class="summit-button">Crear evaluador</b-button>
+        <b-button @click="actualizarEstudiante()" variant="primary" v-else class="summit-button">Actualizar evaluador</b-button>
       </b-form>
 
       <b-table striped hover :items="lista_evaluadores">
         <template v-slot:cell(acciones)="row">
-          <b-button size="sm" @click="cargarEstudiante(row)" class="mr-2">Modificar</b-button>
-          <b-button size="sm" @click="eliminarEstudiante(row)" class="mr-2">Eliminar</b-button>
+          <b-button size="sm" @click="cargarEstudiante(row)" class="mr-2 acciones">Modificar</b-button>
+          <b-button size="sm" @click="eliminarEstudiante(row)" class="mr-2 acciones">Eliminar</b-button>
         </template>
       </b-table>
     </b-container>
   </div>
 </template>
+
+<style>
+    @import '../assets/sizes.css';
+    
+    textarea{
+        min-height: 100px;
+        text-decoration: none;
+    }
+    
+    
+</style>
 
 <script src="@/assets/infoEvaluadores.js"/>
