@@ -77,13 +77,8 @@
             ></b-form-input>
           </b-form-group>
         </b-form-group>
-        <b-button
-          @click="crearCorrecion()"
-          variant="primary"
-          class="submit-button"
-          v-if="!enEdicion"
-        >Crear correcion</b-button>
-        <b-button @click="actualizar_correcion()" variant="primary" v-else>Actualizar Correcion</b-button>
+        <b-button @click="crearCorrecion()" variant="danger" class="submit-button" v-if="!enEdicion">Crear correcion</b-button>
+        <b-button @click="actualizar_correcion()" variant="danger" class="submit-button" v-else>Actualizar Correcion</b-button>
       </b-form>
 
       <b-table striped hover :items="lista_correciones">
@@ -97,7 +92,7 @@
 </template>
 <style>
     @import '../assets/sizes.css';
-    input:focus {
+    input:focus, select:focus, option:focus {
     border : 2px solid rgb(238, 36, 36) !important;
     box-shadow: 0 0 0px !important;
  

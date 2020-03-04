@@ -13,7 +13,7 @@
 
             <b-nav-item-dropdown text="Navegación" right>
               <b-dropdown-item href="infoEvaluadores">Registro</b-dropdown-item>
-              <b-dropdown-item href="registroCorreciones">Evaluar</b-dropdown-item>
+              <b-dropdown-item href="registroEvaluaciones">Evaluar</b-dropdown-item>
 
             </b-nav-item-dropdown>
 

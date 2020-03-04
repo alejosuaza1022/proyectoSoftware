@@ -58,13 +58,13 @@ export default {
             acciones: true
         }
       },
-      get_position({item}){
+      get_position(id){
         return  this.lista_correciones.findIndex(
-            correcion => correcion.id == this.item
+            correcion => correcion.id == id
           );
       },
       eliminar_correcion({ item }) {
-        this.lista_correciones.splice(this.get_position(item), 1);
+        this.lista_correciones.splice(this.get_position(item.id), 1);
       },
       cargar_correcion({ item }) {
         let auxCorre = this.lista_correciones.find(
@@ -76,7 +76,7 @@ export default {
       actualizar_correcion() {
         this.correcion.fecha_vencimiento =  this.formatDate()
         this.puntajeTotal(); 
-        this.lista_correciones.splice(this.get_position(this.correcion), 1, this.correcion);
+        this.lista_correciones.splice(this.get_position(this.correcion.id), 1, this.correcion);
         this.correcion = {
             id: "",
             id_autor:"",
@@ -115,7 +115,7 @@ export default {
       var p3 = parseFloat(this.correcion.aportes_de_obra)
       var p4 = parseFloat(this.correcion.temporalidad)
 
-      this.correcion.resultado_final = p1*0.125+p2*0.125+p3*0.125+p4*0.125
+      this.correcion.resultado_final = p1*0.25+p2*0.25+p3*0.25+p4*0.25
     }
 
     }
