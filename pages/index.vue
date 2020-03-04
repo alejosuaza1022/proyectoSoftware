@@ -4,8 +4,8 @@
       <b-collapse id="nav-collapse" is-nav>
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-navbar-brand href="#">Registro</b-navbar-brand>
-        <b-navbar-brand href="#">Propuesta publicación</b-navbar-brand>
+          <b-navbar-brand href="infoEvaluadores">Registro</b-navbar-brand>
+        <b-navbar-brand href="registroCorreciones">Propuesta publicación</b-navbar-brand>
 
           
         </b-navbar-nav>

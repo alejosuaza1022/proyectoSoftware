@@ -24,6 +24,17 @@
             id="apellido"
           />
         </b-form-group>
+          
+        <b-form-group label="Cédelua" label-for="cc">
+          <b-form-input
+            class="form-control"
+            v-model="evaluador.cc"
+            type="number"
+            placeholder="Ingrese su cédula"
+            id="cc"
+          />
+        </b-form-group>
+          
         <b-form-group label="Email" label-for="email">
           <b-form-input
             class="form-control"
