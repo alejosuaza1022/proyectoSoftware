@@ -87,14 +87,14 @@
           ></b-form-textarea>
         </b-form-group>
 
-        <b-button @click="crearEstudiante()" variant="primary" v-if="!enEdicion" class="summit-button">Crear evaluador</b-button>
-        <b-button @click="actualizarEstudiante()" variant="primary" v-else class="summit-button">Actualizar evaluador</b-button>
+        <b-button @click="crearEstudiante()" variant="danger" v-if="!enEdicion" class="submit-button">Crear evaluador</b-button>
+        <b-button @click="actualizarEstudiante()" variant="danger" v-else class="submit-button">Actualizar evaluador</b-button>
       </b-form>
 
       <b-table striped hover :items="lista_evaluadores">
         <template v-slot:cell(acciones)="row">
-          <b-button size="sm" @click="cargarEstudiante(row)" class="mr-2 acciones">Modificar</b-button>
-          <b-button size="sm" @click="eliminarEstudiante(row)" class="mr-2 acciones">Eliminar</b-button>
+          <b-button size="sm" @click="cargarEstudiante(row)" class="mr-2 acciones" >Modificar</b-button>
+          <b-button size="sm" @click="eliminarEstudiante(row)" class="mr-2 acciones" >Eliminar</b-button>
         </template>
       </b-table>
     </b-container>
@@ -107,6 +107,12 @@
     textarea{
         min-height: 100px;
         text-decoration: none;
+    }
+    
+    input:focus, textarea:focus {
+    border : 2px solid rgb(238, 36, 36) !important;
+    box-shadow: 0 0 0px !important;
+ 
     }
     
     
