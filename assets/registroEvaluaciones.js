@@ -17,7 +17,7 @@ export default {
         acciones: true
       },
       lista_correciones: [],
-
+      lista_reducida:[],
       opciones_carrera: [
         { value: null, text: "Seleccione una guía", disabled: true },
         { value: "001", text: " guía 1" },
@@ -25,10 +25,11 @@ export default {
       ]
     };
   },
-
+  mounted(){
+    this.created()
+  },
   methods: {
     crearCorrecion() {
-      this.created();
       if (this.lista_correciones.length>0)
         this.correcion.id =
           parseInt(this.lista_correciones[this.lista_correciones.length - 1].id) + 1;

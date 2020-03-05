@@ -14,25 +14,17 @@ export default {
             publicaciones: "",
             acciones: true
         },
-        lista_evaluadores: [
-          {
-            nombre: "Juan",
-            apellido: "Mejia",
-            cc: "110293",
-            email: "mejiajuan@gmail.com",
-            dirrecion: "cr 12 # 38-14",
-            afiliacion: "UdeA",
-            cargo: "Profesor",
-            publicaciones: "libro1:descripcion. libro2:descripcion",
-            acciones: true
-          }
-        ],
+        lista_evaluadores: [],
         
       };
+    },
+    mounted(){
+      this.created()
     },
     methods: {
       crearEstudiante() {
         this.lista_evaluadores.push(this.evaluador);
+        this.agregarInfoLS();
         this.evaluador = {
             nombre: "",
             apellido: "",
@@ -50,7 +42,11 @@ export default {
           evaluador => evaluador.cc == item.cc
         );
         this.lista_evaluadores.splice(posicion, 1);
+        this.agregarInfoLS();
       },
+      agregarInfoLS() {
+        localStorage.setItem('registroEvalu', JSON.stringify(this.lista_evaluadores));
+      },  
       cargarEstudiante({ item }) {
         let auxEvalua = this.lista_evaluadores.find(
           evaluador => evaluador.cc == item.cc
@@ -75,7 +71,16 @@ export default {
             publicaciones: "",
             acciones: true
         };
+        this.agregarInfoLS();
  
-      }
+      },
+      created() {
+        let datosLS = JSON.parse(localStorage.getItem('registroEvalu'));
+        if (!datosLS)
+          this.lista_evaluadores = [];
+        else
+          this.lista_evaluadores = datosLS;
+      },
+
     }
   };

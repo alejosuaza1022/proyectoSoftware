@@ -6,13 +6,13 @@
       <h1>Gestión de correción de propuestas</h1>
       <br />
 
-      <b-form action="javascript:void(0)">
+      <b-form action="javascript:void(0)" @submit="crearCorrecion()">
         <b-form-group label="id evaluador" label-for="id_autor">
           <b-form-input
             class="form-control"
             type="text"
             v-bind:required="true"
-            v-model="correcion.id_autor"
+            v-model="correcion.id_evaluador"
             placeholder="Ingrese su id"
             id="id_autor"
           />
@@ -77,8 +77,10 @@
             ></b-form-input>
           </b-form-group>
         </b-form-group>
-        <b-button @click="crearCorrecion()" variant="danger" class="submit-button" v-if="!enEdicion">Crear correcion</b-button>
+        <b-button type="submit" variant="danger" class="submit-button" v-if="!enEdicion">Crear correcion</b-button>
+        
         <b-button @click="actualizar_correcion()" variant="danger" class="submit-button" v-else>Actualizar Correcion</b-button>
+
       </b-form>
 
       <b-table striped hover :items="lista_correciones">
@@ -96,6 +98,9 @@
     border : 2px solid rgb(238, 36, 36) !important;
     box-shadow: 0 0 0px !important;
  
+    }
+    .buttonM{
+      margin-left: 100px  
     }
 
 </style>

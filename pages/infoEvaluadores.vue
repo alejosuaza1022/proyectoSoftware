@@ -8,11 +8,12 @@
       <h1>Formulario de evaluadores</h1>
       <br />
 
-      <b-form action="javascript:void(0)" >
+      <b-form action="javascript:void(0)" @submit="crearEstudiante()" >
         <b-form-group label="Nombre" label-for="nombre">
           <b-form-input
             class="form-control"
             type="text"
+            v-bind:required="true"
             v-model="evaluador.nombre"
             placeholder="Ingrese su nombre"
             id="nombre"
@@ -21,6 +22,7 @@
         <b-form-group label="Apellido" label-for="apellido">
           <b-form-input
             class="form-control"
+            v-bind:required="true"
             v-model="evaluador.apellido"
             placeholder="Ingrese su apellido"
             id="apellido"
@@ -30,6 +32,7 @@
         <b-form-group label="Cédelua" label-for="cc">
           <b-form-input
             class="form-control"
+            v-bind:required="true"
             v-model="evaluador.cc"
             type="number"
             placeholder="Ingrese su cédula"
@@ -40,6 +43,7 @@
         <b-form-group label="Email" label-for="email">
           <b-form-input
             class="form-control"
+            v-bind:required="true"
             type="email"
             v-model="evaluador.email"
             placeholder="Ingrese su email"
@@ -61,6 +65,7 @@
           <b-form-input
             class="form-control"
             type="text"
+            v-bind:required="true"
             v-model="evaluador.afiliacion"
             id="afiliacion"
             placeholder="Ingrese su afiliación institucional"
@@ -71,6 +76,7 @@
           <b-form-input
             class="form-control"
             type="text"
+            v-bind:required="true"
             v-model="evaluador.cargo"
             id="cargo"
             placeholder="Ingrese su cargo"
@@ -86,8 +92,8 @@
             placeholder="Ingrese sus publicaciones anteriores"
           ></b-form-textarea>
         </b-form-group>
-
-        <b-button @click="crearEstudiante()" variant="danger" v-if="!enEdicion" class="submit-button">Crear evaluador</b-button>
+     
+        <b-button type="submit" variant="danger" v-if="!enEdicion" class="submit-button">Crear evaluador</b-button>
         <b-button @click="actualizarEstudiante()" variant="danger" v-else class="submit-button">Actualizar evaluador</b-button>
       </b-form>
 
