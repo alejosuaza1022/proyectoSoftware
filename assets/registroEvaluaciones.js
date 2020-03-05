@@ -28,6 +28,7 @@ export default {
 
   methods: {
     crearCorrecion() {
+      this.created();
       if (this.lista_correciones.length>0)
         this.correcion.id =
           parseInt(this.lista_correciones[this.lista_correciones.length - 1].id) + 1;
