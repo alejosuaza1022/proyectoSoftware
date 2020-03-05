@@ -7,7 +7,7 @@
       <br />
 
       <b-form action="javascript:void(0)">
-        <b-form-group label="id autor" label-for="id_autor">
+        <b-form-group label="id evaluador" label-for="id_autor">
           <b-form-input
             class="form-control"
             type="text"

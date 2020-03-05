@@ -5,7 +5,7 @@ export default {
       enEdicion: false,
       correcion: {
         id: "1",
-        id_autor: "",
+        id_evaluador: "",
         fecha: "",
         documento_guia: "Seleccione una guía",
         fecha_vencimiento: "",
@@ -25,25 +25,20 @@ export default {
       ]
     };
   },
-  created() {
-    let datosLS = JSON.parse(localStorage.getItem('registroEvDB'));
-    if (!datosLS) 
-      this.lista_correciones = [];
-    else 
-      this.lista_correciones = datosLS;
-    
-    console.log(lista_correciones);
-  },
+
   methods: {
     crearCorrecion() {
-      this.correcion.id =
-        parseInt(this.lista_correciones[this.lista_correciones.length - 1].id) + 1;
+      if (this.lista_correciones.length>0)
+        this.correcion.id =
+          parseInt(this.lista_correciones[this.lista_correciones.length - 1].id) + 1;
+      else
+        this.correcion.id = 1
 
       this.correcion.fecha_vencimiento = this.formatDate()
       this.puntajeTotal();
       this.lista_correciones.push(this.correcion);
       this.correcion = {
-        id_autor: "autor",
+        id_evaluador: "",
         id: "",
         fecha: "",
         documento_guia: "Seleccione una guía",
@@ -56,6 +51,13 @@ export default {
         acciones: true
       }
       this.agregarInfoLS();
+    },
+    created() {
+      let datosLS = JSON.parse(localStorage.getItem('registroEvDB'));
+      if (!datosLS)
+        this.lista_correciones = [];
+      else
+        this.lista_correciones = datosLS;
     },
     get_position(id) {
       return this.lista_correciones.findIndex(
@@ -80,7 +82,7 @@ export default {
       this.lista_correciones.splice(this.get_position(this.correcion.id), 1, this.correcion);
       this.correcion = {
         id: "",
-        id_autor: "",
+        id_evaluador: "",
         id_propuesta: "",
         fecha: "",
         documento_guia: "Seleccione una guía",
