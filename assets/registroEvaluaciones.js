@@ -4,8 +4,9 @@ export default {
       mensaje: "Formulario nuevos correciones",
       enEdicion: false,
       correcion: {
-        id: "1",
-        id_evaluador: "",
+        id_prop: "1",
+        id_evaluador: null,
+        id_autor:null,
         fecha: "",
         documento_guia: "Seleccione una guía",
         fecha_vencimiento: "",
@@ -14,7 +15,8 @@ export default {
         aportes_de_obra: null,
         temporalidad: null,
         resultado_final: null,
-        acciones: true
+
+        acciones: true,
       },
       lista_correciones: [],
       lista_reducida:[],
@@ -40,8 +42,9 @@ export default {
       this.puntajeTotal();
       this.lista_correciones.push(this.correcion);
       this.correcion = {
-        id_evaluador: "",
-        id: "",
+        id_evaluador: null,
+        id_prop: "",
+        id_autor:null,
         fecha: "",
         documento_guia: "Seleccione una guía",
         fecha_vencimiento: "",
@@ -83,8 +86,9 @@ export default {
       this.puntajeTotal();
       this.lista_correciones.splice(this.get_position(this.correcion.id), 1, this.correcion);
       this.correcion = {
-        id: "",
-        id_evaluador: "",
+        id_prop: "",
+        id_evaluador: null,
+        id_autor:null,
         id_propuesta: "",
         fecha: "",
         documento_guia: "Seleccione una guía",

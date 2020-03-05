@@ -6,15 +6,25 @@
       <h1>Gestión de correción de propuestas</h1>
       <br />
 
-      <b-form action="javascript:void(0)" @submit="crearCorrecion()">
+      <b-form action="javascript:void(0)" @submit="crearCorrecion">
         <b-form-group label="id evaluador" label-for="id_autor">
           <b-form-input
             class="form-control"
-            type="text"
+            type="number"
             v-bind:required="true"
             v-model="correcion.id_evaluador"
             placeholder="Ingrese su id"
             id="id_autor"
+          />
+        </b-form-group>
+        <b-form-group label="id autor" label-for="id_autor">
+          <b-form-input
+            class="form-control"
+            type="number"
+            v-model="correcion.id_autor"
+            id="id_autor"
+            v-bind:required="true"
+            placeholder="Ingrese el id autor"
           />
         </b-form-group>
         <b-form-group label="fecha de realización" label-for="fecha">
@@ -27,8 +37,8 @@
             id="fecha"
           />
         </b-form-group>
-                   <b-form-group label="documento guía">
-          <b-form-select  v-model="correcion.documento_guia" :options="opciones_carrera"></b-form-select>
+        <b-form-group label="documento guía">
+          <b-form-select v-model="correcion.documento_guia" :options="opciones_carrera"></b-form-select>
         </b-form-group>
 
         <b-form-group label="ingrese valores númericos para calificar" label-for="labelInfo">
@@ -58,7 +68,6 @@
             <b-form-input
               class="form-control"
               type="number"
-           
               v-bind:required="true"
               v-model="correcion.aportes_de_obra"
               id="aportes_de_obra"
@@ -77,10 +86,19 @@
             ></b-form-input>
           </b-form-group>
         </b-form-group>
-        <b-button type="submit" variant="danger" class="submit-button" v-if="!enEdicion">Crear correcion</b-button>
-        
-        <b-button @click="actualizar_correcion()" variant="danger" class="submit-button" v-else>Actualizar Correcion</b-button>
+        <b-button
+          type="submit"
+          variant="danger"
+          class="submit-button"
+          v-if="!enEdicion"
+        >Crear correcion</b-button>
 
+        <b-button
+          @click="actualizar_correcion()"
+          variant="danger"
+          class="submit-button"
+          v-else
+        >Actualizar Correcion</b-button>
       </b-form>
 
       <b-table striped hover :items="lista_correciones">
@@ -93,15 +111,15 @@
   </div>
 </template>
 <style>
-    @import '../assets/sizes.css';
-    input:focus, select:focus, option:focus {
-    border : 2px solid rgb(238, 36, 36) !important;
-    box-shadow: 0 0 0px !important;
- 
-    }
-    .buttonM{
-      margin-left: 100px  
-    }
-
+@import "../assets/sizes.css";
+input:focus,
+select:focus,
+option:focus {
+  border: 2px solid rgb(238, 36, 36) !important;
+  box-shadow: 0 0 0px !important;
+}
+.buttonM {
+  margin-left: 100px;
+}
 </style>
 <script src="@/assets/registroEvaluaciones.js"/>
