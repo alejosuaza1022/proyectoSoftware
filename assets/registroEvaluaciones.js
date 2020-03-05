@@ -4,7 +4,8 @@ export default {
       mensaje: "Formulario nuevos correciones",
       enEdicion: false,
       correcion: {
-        id_prop: "1",
+        id:null,
+        id_propuesta: null,
         id_evaluador: null,
         id_autor:null,
         fecha: "",
@@ -32,18 +33,17 @@ export default {
   },
   methods: {
     crearCorrecion() {
-      if (this.lista_correciones.length>0)
-        this.correcion.id =
-          parseInt(this.lista_correciones[this.lista_correciones.length - 1].id) + 1;
-      else
-        this.correcion.id = 1
-
+      if(this.lista_correciones.length>0)
+          this.correcion.id = this.lista_correciones[this.lista_correciones.length-1].id + 1 
+      else  
+      this.correcion.id = 1   
       this.correcion.fecha_vencimiento = this.formatDate()
       this.puntajeTotal();
       this.lista_correciones.push(this.correcion);
       this.correcion = {
+        id:null,
+        id_propuesta: null,
         id_evaluador: null,
-        id_prop: "",
         id_autor:null,
         fecha: "",
         documento_guia: "Seleccione una guía",
@@ -53,7 +53,8 @@ export default {
         aportes_de_obra: null,
         temporalidad: null,
         resultado_final: null,
-        acciones: true
+
+        acciones: true,
       }
       this.agregarInfoLS();
     },
@@ -86,10 +87,10 @@ export default {
       this.puntajeTotal();
       this.lista_correciones.splice(this.get_position(this.correcion.id), 1, this.correcion);
       this.correcion = {
-        id_prop: "",
+        id:null,
+        id_propuesta: null,
         id_evaluador: null,
         id_autor:null,
-        id_propuesta: "",
         fecha: "",
         documento_guia: "Seleccione una guía",
         fecha_vencimiento: "",
@@ -98,7 +99,7 @@ export default {
         aportes_de_obra: null,
         temporalidad: null,
         resultado_final: null,
-        acciones: true
+        acciones: true,
       };
       this.agregarInfoLS();
       this.enEdicion = false

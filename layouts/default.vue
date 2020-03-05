@@ -12,8 +12,10 @@
           <b-navbar-nav class="ml-auto">
 
             <b-nav-item-dropdown text="Navegación" right>
-              <b-dropdown-item href="infoEvaluadores">Registro</b-dropdown-item>
-              <b-dropdown-item href="registroEvaluaciones">Evaluar</b-dropdown-item>
+              <b-dropdown-item class = "a" href="infoEvaluadores">Registro</b-dropdown-item>
+              <b-dropdown-item  class = "a" href="registroEvaluaciones">Evaluar</b-dropdown-item>
+              <b-dropdown-item class = "a"  href="notificacionAutor">notificaciones</b-dropdown-item>
+                <b-dropdown-item class = "a"  href="evalPublicacion">evalPublicaion</b-dropdown-item>
 
             </b-nav-item-dropdown>
 
@@ -74,5 +76,9 @@
     .button--grey:hover {
       color: #fff;
       background-color: #35495e;
+    }
+    .a :hover{
+      
+      background: #DC3546;
     }
 </style>

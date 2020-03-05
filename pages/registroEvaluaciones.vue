@@ -27,6 +27,16 @@
             placeholder="Ingrese el id autor"
           />
         </b-form-group>
+          <b-form-group label="id propuesta" label-for="id_propuesta">
+          <b-form-input
+            class="form-control"
+            type="number"
+            v-model="correcion.id_propuesta"
+            id="id_propuesta"
+            v-bind:required="true"
+            placeholder="Ingrese el id de la propuesta"
+          />
+        </b-form-group>
         <b-form-group label="fecha de realización" label-for="fecha">
           <b-form-input
             class="form-control"
@@ -85,6 +95,16 @@
               placeholder="Ingrese temporalidad"
             ></b-form-input>
           </b-form-group>
+           <b-form-group label="comentarios " label-for="comentarios">
+          <b-form-textarea
+            class="form-control"
+            type="textbox"
+            v-model="correcion.comentario"
+            id="comentarios"
+            placeholder="Ingrese sus publicaciones anteriores"
+          ></b-form-textarea>
+        </b-form-group>
+
         </b-form-group>
         <b-button
           type="submit"
