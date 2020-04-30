@@ -1,20 +1,22 @@
 export default {
     data() {
         return {
-            lista_propuestasautor: [],
+            lista_propuestasEval: [],
             lista_correciones: [],
             prop: {
-                id_autor: null
+                id_propuesta: null
             }
 
         };
 
     },
+    
     mounted() {
         this.created()
     }
     ,
     methods: {
+        // bajar información del local storage, verificar que si haya información
         created() {
             let datosLS = JSON.parse(localStorage.getItem('registroEvDB'));
             if (!datosLS)
@@ -23,22 +25,28 @@ export default {
                 this.lista_correciones = datosLS;
         }
         ,
+
+        // metodo que busca en el local storage de las publicaciones las propuestas que hayan según la
+        // propuesta que el usuario quiera buscar
         mostrarData() {
-            this.lista_propuestasautor.length = 0;
+            console.log("aksdja")
+            this.lista_propuestasEval.length = 0;
             this.lista_correciones.forEach(element => {
-                if(element.id_autor === this.prop.id_autor+""){
+                if(element.id_propuesta === this.prop.id_propuesta+""){
                     var aux = {
-                        "id_prop":element.id,
                         "estado":"calificado",
+                        "fechaRevision":element.fecha,
+                        "fecha_vecimiento":element.fecha_vencimiento,
                         "estilo":element.estilo,
                         "organizacion_contenido":element.organizacion_contenido,
                         "aportes_de_obra":element.aportes_de_obra,
                         "temporalidad":element.temporalidad,
                         "resultado_final":element.resultado_final,
-                        "fecha_vecimiento":element.fecha_vencimiento
+                        "comentario":element.comentario,
+
                     }
 
-                    this.lista_propuestasautor.push(aux)
+                    this.lista_propuestasEval.push(aux)
                 
                 }
             });

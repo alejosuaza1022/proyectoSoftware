@@ -104,7 +104,9 @@ export default {
       this.agregarInfoLS();
       this.enEdicion = false
     },
+    // sumar 15 días habiles después de la creación de la fecha 
     formatDate() {
+
       var date = new Date(this.correcion.fecha)
       date.setDate(date.getDate() + 16)
       var d = new Date(date),
@@ -125,6 +127,7 @@ export default {
 
 
     ,
+    // hacer el calculo del puntaje, con las 4 preguntas ingresadas por el usuario
     puntajeTotal() {
       var p1 = parseFloat(this.correcion.organizacion_contenido)
       var p2 = parseFloat(this.correcion.estilo)

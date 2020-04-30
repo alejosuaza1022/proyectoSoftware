@@ -1,0 +1,4 @@
+nuestro sprint consiste en registrar un evaluador, permitir a este que se encarge de hacer la evaluación de propuestas, donde para ello evalua unos parametros dados, y se le envían notificaciones al autor, en este caso lo que se hace es que el autor pueda buscar según su id las propuestas que tiene en le han sido calificadas, pero si tuviesemos la sección de un usuario siempre iniciada, se podría hacer que en lugar siempre hubiera cargado sus revisiones y ahí podría llamarse las notificaciones, también se permite que un autor pueda buscar todas las correciones que se le han hecho a uno propuesta.
+
+jhon steven agudelo rodriguez jhonstevenkill22@gmail.com   
+alejandro suaza builes alejandrosuaza.1022@gmail.com 

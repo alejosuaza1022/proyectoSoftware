@@ -15,7 +15,8 @@
               <b-dropdown-item class = "a" href="infoEvaluadores">Registro</b-dropdown-item>
               <b-dropdown-item  class = "a" href="registroEvaluaciones">Evaluar</b-dropdown-item>
               <b-dropdown-item class = "a"  href="notificacionAutor">notificaciones</b-dropdown-item>
-                <b-dropdown-item class = "a"  href="evalPublicacion">evalPublicaion</b-dropdown-item>
+              <b-dropdown-item class = "a"  href="evalPublicacion">evalPublicaion</b-dropdown-item>
+              <b-dropdown-item class = "a"  href="documentos">Documentos</b-dropdown-item>
 
             </b-nav-item-dropdown>
 

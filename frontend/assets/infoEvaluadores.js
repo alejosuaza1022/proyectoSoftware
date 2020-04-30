@@ -22,6 +22,7 @@ export default {
       this.created()
     },
     methods: {
+
       crearEstudiante() {
         this.lista_evaluadores.push(this.evaluador);
         this.agregarInfoLS();
@@ -74,6 +75,7 @@ export default {
         this.agregarInfoLS();
  
       },
+      // verificar existencia de datos o creación de intancia nueva
       created() {
         let datosLS = JSON.parse(localStorage.getItem('registroEvalu'));
         if (!datosLS)
