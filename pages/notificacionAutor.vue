@@ -1,17 +1,17 @@
 <template>
 <b-container>
-    <b-form-group label="id propuesta" label-for="id_propuesta">
+    <b-form-group label="id autor" label-for="id_autor">
             <b-form-input
               class="form-control"
               type="number"
               id="id_autor"
-              v-model="prop.id_propuesta"
+              v-model="prop.id_autor"
               v-bind:required="true"
-              placeholder="Ingrese el id propuesta"
+              placeholder="Ingrese el id autor"
             />
           </b-form-group>
       <b-button @click="mostrarData()"  variant="danger"  >ver evaluación propuestas</b-button>
-       <b-table striped hover :items="lista_propuestasEval">
+       <b-table striped hover :items="lista_propuestasautor">
       </b-table>
 </b-container>
         
@@ -21,4 +21,4 @@
 
 
 </style>
-<script src="@/assets/evalPublicacion.js"/>
+<script src="../assets/notificacionAutor.js"/>

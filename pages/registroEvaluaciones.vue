@@ -142,4 +142,4 @@ option:focus {
   margin-left: 100px;
 }
 </style>
-<script src="@/assets/registroEvaluaciones.js"/>
+<script src="../assets/registroEvaluaciones.js"/>

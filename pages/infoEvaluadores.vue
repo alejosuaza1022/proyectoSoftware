@@ -124,4 +124,4 @@
     
 </style>
 
-<script src="@/assets/infoEvaluadores.js"/>
+<script src="../assets/infoEvaluadores.js"/>
