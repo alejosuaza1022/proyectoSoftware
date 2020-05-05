@@ -18,14 +18,15 @@
       <b-form-group id="input-group-2" label="Clave" label-for="input-2" description="esta información es privada">
         <b-form-input
           id="input-2"
+          type="password"
           v-model="evaluador.clave"
           required
           placeholder="ingrese  clave"
         ></b-form-input>
       </b-form-group>
-    <b-button variant="danger" @click="login()">asd</b-button>
+    <b-button variant="danger" class="ml-2 acciones" @click="login()">asd</b-button>
     
-      <b-link href="infoEvaluadores">Regitrarme {{mensaje}}</b-link>
+      <b-link   href="infoEvaluadores?actu=0">Regitrarme {{mensaje}}</b-link>
     </b-form>
 
   </div>

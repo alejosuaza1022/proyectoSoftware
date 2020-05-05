@@ -1,6 +1,9 @@
 const axios = require("axios");
 const url = 'localhost:4000/api/'
 export default {
+    beforeMount() {
+        localStorage.removeItem('Evaluador')
+    },
     data() {
         return {
             mensaje: '',
@@ -23,7 +26,7 @@ export default {
                         this.agregarInfoLS({ idevaluador: this.evaluador.idevaluador, token: res.data['info'] })
 
                     }
-                    this.$router.push({ path: "evaluadorPrinci", query: { nombre: res.data['nombre'] } });
+                    this.$router.push({ path: "evaluadorPrincipal", query: { nombre: res.data['nombre'] } });
                 })
                 .catch(err => (console.log("ha ocurrido el error :" + err)));
 

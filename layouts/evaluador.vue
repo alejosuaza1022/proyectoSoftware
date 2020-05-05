@@ -7,20 +7,25 @@
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
-
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-
             <b-nav-item-dropdown text="Navegación" right>
-              <b-dropdown-item class = "a" href="loginAutor">Revisiones Disponibles</b-dropdown-item>
-              <b-dropdown-item  class = "a" href="LoginEvaluador">Actualizar info</b-dropdown-item>
-<!--              <b-dropdown-item class = "a"  href="notificacionAutor">notificaciones</b-dropdown-item>
+              <b-dropdown-item class="a" href="evalCorrec"
+                >Revisiones correciones</b-dropdown-item
+              >
+              <b-dropdown-item class="a" href="revisionesNuevas"
+                >Revisiones nuevas</b-dropdown-item
+              >
+              <b-dropdown-item class="a" href="infoEvaluadores?actu=1"
+                >Actualizar info</b-dropdown-item
+              >
+              <b-dropdown-item class="a" href="evalPendientes"
+                >Evaluaciones pendientes</b-dropdown-item
+              >
+              <!--              <b-dropdown-item class = "a"  href="notificacionAutor">notificaciones</b-dropdown-item>
               <b-dropdown-item class = "a"  href="evalPublicacion">evalPublicaion</b-dropdown-item>
               <b-dropdown-item class = "a"  href="documentos">Documentos</b-dropdown-item>-->
-
             </b-nav-item-dropdown>
-
-
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
@@ -30,56 +35,83 @@
   </div>
 </template>
 
+<script>
+import Axios from "axios";
+const axios = require("axios");
+export default {
+  beforeMount() {
+    this.loadPage();
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    loadPage() {
+      let url = "http://localhost:4000/api/evaluador/verificar?tipo=evaluador";
+      let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
+      if (!evaluador) throw "forbbiden ";
+      let token = evaluador.token
+      axios
+        .get(url, { headers: { token } })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          this.$router.push("../layouts/default");
+        });
+    }
+  }
+};
+</script>
+
 <style>
-    
-    .dropdown-item:active{
-        background: #DC3546;    
-    }
-    
-    html {
-      font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, "Helvetica Neue", Arial, sans-serif;
-      font-size: 16px;
-      word-spacing: 1px;
-      -ms-text-size-adjust: 100%;
-      -webkit-text-size-adjust: 100%;
-      -moz-osx-font-smoothing: grayscale;
-      -webkit-font-smoothing: antialiased;
-      box-sizing: border-box;
-    }
-    *,
-    *:before,
-    *:after {
-      box-sizing: border-box;
-      margin: 0;
-    }
-    .button--green {
-      display: inline-block;
-      border-radius: 4px;
-      border: 1px solid #3b8070;
-      color: #3b8070;
-      text-decoration: none;
-      padding: 10px 30px;
-    }
-    .button--green:hover {
-      color: #fff;
-      background-color: #3b8070;
-    }
-    .button--grey {
-      display: inline-block;
-      border-radius: 4px;
-      border: 1px solid #35495e;
-      color: #35495e;
-      text-decoration: none;
-      padding: 10px 30px;
-      margin-left: 15px;
-    }
-    .button--grey:hover {
-      color: #fff;
-      background-color: #35495e;
-    }
-    .a :hover{
-      
-      background: #DC3546;
-    }
+.dropdown-item:active {
+  background: #dc3546;
+}
+
+html {
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+.button--green {
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #3b8070;
+  color: #3b8070;
+  text-decoration: none;
+  padding: 10px 30px;
+}
+.button--green:hover {
+  color: #fff;
+  background-color: #3b8070;
+}
+.button--grey {
+  display: inline-block;
+  border-radius: 4px;
+  border: 1px solid #35495e;
+  color: #35495e;
+  text-decoration: none;
+  padding: 10px 30px;
+  margin-left: 15px;
+}
+.button--grey:hover {
+  color: #fff;
+  background-color: #35495e;
+}
+.a :hover {
+  background: #dc3546;
+}
 </style>
