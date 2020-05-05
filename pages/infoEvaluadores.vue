@@ -92,17 +92,17 @@
             placeholder="Ingrese sus publicaciones anteriores"
           ></b-form-textarea>
         </b-form-group>
-     
+    
         <b-button type="submit" variant="danger" v-if="!enEdicion" class="submit-button">Crear evaluador</b-button>
-        <b-button @click="actualizarEstudiante()" variant="danger" v-else class="submit-button">Actualizar evaluador</b-button>
+        <b-button  @click="actualizarEstudiante()"  variant="danger" v-else class="submit-button">Actualizar evaluador</b-button>
       </b-form>
 
-      <b-table striped hover :items="lista_evaluadores">
+      <b-table striped hover :items="lista_evaluadores" v-if="enEdicion">
         <template v-slot:cell(acciones)="row">
           <b-button size="sm" @click="cargarEstudiante(row)" class="mr-2 acciones" >Modificar</b-button>
           <b-button size="sm" @click="eliminarEstudiante(row)" class="mr-2 acciones" >Eliminar</b-button>
         </template>
-      </b-table>
+      </b-table> 
     </b-container>
   </div>
 </template>

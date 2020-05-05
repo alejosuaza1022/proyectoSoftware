@@ -1,14 +1,14 @@
 <template>
-  <div class="login">
+  <div class="login" action="javascript:void(0)">
     <b-form @submit="login">
       <b-form-group
         id="input-group-1"
-        label="Numero de identificación:"
+        label="Numero de identificación: "
         label-for="input-1"
       >
         <b-form-input
           id="input-1"
-          v-model="autor.id"
+          v-model="evaluador.idevaluador"
           type="text"
           required
           placeholder="ingrese id"
@@ -18,19 +18,20 @@
       <b-form-group id="input-group-2" label="Clave" label-for="input-2" description="esta información es privada">
         <b-form-input
           id="input-2"
-          v-model="autor.clave"
+          v-model="evaluador.clave"
           required
           placeholder="ingrese  clave"
         ></b-form-input>
       </b-form-group>
-      <b-button  type="submit" variant="outline-danger">Log in</b-button>
+    <b-button variant="danger" @click="login()">asd</b-button>
+    
+      <b-link href="infoEvaluadores">Regitrarme {{mensaje}}</b-link>
     </b-form>
-      <b-link href="infoEvaluadores">Registrarme</b-link>
 
   </div>
 </template>
 
-<script src="../assets/loginAutor.js"/>
+<script src="../assets/loginEvaluador.js"/>
 
 
 

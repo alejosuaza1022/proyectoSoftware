@@ -12,8 +12,8 @@
           <b-navbar-nav class="ml-auto">
 
             <b-nav-item-dropdown text="Navegación" right>
-              <b-dropdown-item class = "a" href="loginAutor">Autor</b-dropdown-item>
-              <b-dropdown-item  class = "a" href="LoginEvaluador">Evaluador</b-dropdown-item>
+              <b-dropdown-item class = "a" href="loginAutor">Revisiones Disponibles</b-dropdown-item>
+              <b-dropdown-item  class = "a" href="LoginEvaluador">Actualizar info</b-dropdown-item>
 <!--              <b-dropdown-item class = "a"  href="notificacionAutor">notificaciones</b-dropdown-item>
               <b-dropdown-item class = "a"  href="evalPublicacion">evalPublicaion</b-dropdown-item>
               <b-dropdown-item class = "a"  href="documentos">Documentos</b-dropdown-item>-->

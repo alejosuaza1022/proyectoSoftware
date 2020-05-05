@@ -1,5 +1,4 @@
 
-
 <template>
     <div class="links">
         <b-link href="assets/ejemplo.pdf" download class="documents">Propuesta</b-link>
