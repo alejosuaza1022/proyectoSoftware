@@ -3,6 +3,7 @@
     <h1>Evaluaciones Pendientes</h1>
     <b-table striped hover :items="lista_propuestas">
       <template v-slot:cell(acciones)="row">
+        <div>
         <b-button
           variant="outline-danger"
           size="sm"
@@ -10,6 +11,13 @@
           class="mr-2 acciones"
           >Evaluar</b-button
         >
+         <b-button
+          variant="outline-danger"
+          size="sm"
+          @click="corregir_propuesta(row)"
+          class="mr-2 acciones"
+          >Correción</b-button>
+        </div>
       </template>
     </b-table>
   </b-container>
@@ -30,14 +38,14 @@ export default {
   },
   methods: {
     evaluar_propuesta({ item }) {
-       this.$router.push({ path: "registroEvaluaciones", query: { idpubr: item.idpublicacionrevision,idput: item.id} });
+       this.$router.push({ path: "registroEvaluaciones", query: { idpub: item.idpub,eval:true, idrev:item.id} });
     },
     cargar_propuestas() {
       let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
       let token = evaluador.token;
       let ideval = evaluador.idevaluador;
       Axios.get(
-        `http://localhost:4000/api/evaluador/obtener_en_espera_evaluar/${ideval}`,
+        `http://localhost:4000/api/evaluador/espera-evaluar/${ideval}`,
         { headers: { token } }
       )
         .then(res => {
@@ -50,6 +58,9 @@ export default {
         .catch(erro => {
           console.log(erro);
         });
+    },
+    corregir_propuesta({item}){
+       this.$router.push({ path: "registroEvaluaciones", query: {id: item.id, eval:false} });
     }
   }
 };

@@ -23,7 +23,7 @@ export default {
                 }).then(res => {
 
                     if (res) {
-                        this.agregarInfoLS({ idevaluador: this.evaluador.idevaluador, token: res.data['info'] })
+                        this.agregarInfoLS({ idevaluador: this.evaluador.idevaluador, token: res.data['info'], nombre: res.data['nombre'] })
 
                     }
                     this.$router.push({ path: "evaluadorPrincipal", query: { nombre: res.data['nombre'] } });

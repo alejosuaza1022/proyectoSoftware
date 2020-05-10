@@ -33,32 +33,36 @@ export default {
       let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
       let token = evaluador.token;
       let ideval = evaluador.idevaluador;
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, "0");
+      var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+      var yyyy = today.getFullYear();
+      today = mm + "/" + dd + "/" + yyyy;
+      console.log(today)
       let propuesta = {
-        fechaevaluacion: "01/01/0001",
-        organizacion: 0,
-        estilo: 0,
-        temporalidad: 0,
-        aportesobras: 0,
-        resultadofinal: 0,
-        concepto: 0,
+        fechasubida: today,
         idevaluador: ideval,
-        idpublicacionrevision: item.id
+        idpublicacion:item.id,
+        archivo: "algo por ahora",// item.archivo,
+        estado:0
       };
-      Axios.post('http://localhost:4000/api/registro_eval', propuesta, {
+     Axios.post("http://localhost:4000/api/publicacion_rev", propuesta, {
         headers: { token }
-      }).then(res => {
-        console.log(res);
-        let posicion = this.lista_bookmark.findIndex(
-          prop => prop.id == item.id
-        );
-        this.lista_propuestas.splice(posicion,1);
-      }).catch(error => {
+      })
+        .then(res => {
+          console.log(res);
+          let posicion = this.lista_bookmark.findIndex(
+            prop => prop.id == item.id
+          );
+          this.lista_propuestas.splice(posicion, 1);
+        })
+        .catch(error => {
           console.log(error);
-      });
+        });
     },
     cargar_propuestas() {
       let token = JSON.parse(localStorage.getItem("Evaluador")).token;
-      Axios.get(this.url + "propuestas_nuevas", { headers: { token } })
+      Axios.get(this.url + "propuestas-nuevas", { headers: { token } })
         .then(res => {
           this.lista_propuestas = res.data.publicaciones.map(x => {
             var o = Object.assign({}, x); // asignar el campo acciones a todos los valores de la BD

@@ -7,19 +7,21 @@ export default {
         return {
             mensaje: "Formulario nuevos correciones",
             enEdicion: false,
+            eval: true,
             mostrar: false,
             correcion: {
-                id: null,
-                fechaevaluacion: "",
+                id_publicacion: null,
+                fecha_evaluacion: "",
                 organizacion: null,
                 estilo: null,
-                aportesobras: null,
+                aportes_obras: null,
                 temporalidad: null,
-                resultadofinal: null,
+                resultado_final: null,
                 concepto: null,
                 comentarios: null,
                 acciones: true,
             },
+            retroalimentacion: null,
             lista_correciones: [],
             lista_reducida: [],
         };
@@ -28,17 +30,20 @@ export default {
         let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
         let token = evaluador.token;
         let ideval = evaluador.idevaluador;
-        Axios.get(`http://localhost:4000/api/evaluador/obtener_evaluadas/${ideval}`, {
-                headers: {
-                    token
-                }
-            }).then(res => {
-                this.lista_correciones = res.data.publicaciones;
-            })
-            .catch(erro => {
-                console.log(erro);
-            })
-
+        this.eval = this.$route.query.eval;
+        console.log(this.eval)
+        if (eval) {
+            /* Axios.get(`http://localhost:4000/api/evaluador/obtener_evaluadas/${ideval}`, {
+                     headers: {
+                         token
+                     }
+                 }).then(res => {
+                     this.lista_correciones = res.data.publicaciones;
+                 })
+                 .catch(erro => {
+                     console.log(erro);
+                 })*/
+        }
 
     },
 
@@ -46,39 +51,69 @@ export default {
 
     },
     methods: {
-        crearCorrecion() {
+        crear_evalua() {
             let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
             let token = evaluador.token;
-            this.correcion.id = this.$route.query.idput;
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, "0");
+            var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+            var yyyy = today.getFullYear();
+            today = mm + "/" + dd + "/" + yyyy;
+            this.correcion.fecha_evaluacion = today
+            this.correcion.id_publicacion = this.$route.query.idpub;
             this.puntajeTotal();
-            this.correcion.fechaevaluacion = moment(this.correcion.fechaevaluacion).format('MM/DD/YYYY')
             let corr = Object.assign({}, this.correcion);
-            corr.idpublicacionrevision = this.$route.query.idpubr;
             delete corr.acciones
-            delete corr.comentarios
-            console.log(corr)
+            corr.id_evaluador = evaluador.idevaluador;
+            corr.id = this.$route.query.idrev
 
-            Axios.put(`http://localhost:4000/api/registro_eval/${corr.id}`, corr, {
+            Axios.post(`http://localhost:4000/api/registro_eval`, corr, {
                 headers: { token }
             }).then(res => {
                 console.log(res)
-                this.lista_correciones.push(this.correcion);
+                    //this.lista_correciones.push(this.correcion);
                 this.correcion = {
-                    fechaevaluacion: "",
                     organizacion: null,
                     estilo: null,
-                    aportesobras: null,
+                    aportes_obras: null,
                     temporalidad: null,
-                    resultadofinal: null,
+                    resultado_final: null,
                     concepto: null,
                     comentarios: null,
                     acciones: true,
                 }
-                this.agregarInfoLS();
+                this.$router.push({ path: "evaluadorPrincipal", query: { nombre: evaluador.nombre } })
+                    // this.agregarInfoLS();
+            }).catch(error => {
+                console.log(error)
+
+            });
+        },
+        crear_correcion() {
+            let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
+            let token = evaluador.token;
+            let id = this.$route.query.id;
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, "0");
+            var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+            var yyyy = today.getFullYear();
+            today = mm + "/" + dd + "/" + yyyy;
+            Axios.put(`http://localhost:4000/api/publicacion_rev/${id}`, {
+                retroalimentacion: this.retroalimentacion,
+                fecha_realizada: today
+            }, {
+                headers: {
+                    token
+                }
+            }).then(res => {
+                this.retroalimentacion = null
+                console.log(res.data)
             }).catch(error => {
                 console.log(error)
 
             })
+
+
         },
         created() {
 
@@ -153,10 +188,10 @@ export default {
         puntajeTotal() {
             var p1 = parseFloat(this.correcion.organizacion)
             var p2 = parseFloat(this.correcion.estilo)
-            var p3 = parseFloat(this.correcion.aportesobras)
+            var p3 = parseFloat(this.correcion.aportes_obras)
             var p4 = parseFloat(this.correcion.temporalidad)
 
-            this.correcion.resultadofinal = p1 * 0.25 + p2 * 0.25 + p3 * 0.25 + p4 * 0.25
+            this.correcion.resultado_final = p1 * 0.25 + p2 * 0.25 + p3 * 0.25 + p4 * 0.25
         }
     },
 

@@ -10,11 +10,9 @@
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <b-nav-item-dropdown text="Navegación" right>
-              <b-dropdown-item class="a" href="evalCorrec"
-                >Revisiones correciones</b-dropdown-item
-              >
+              
               <b-dropdown-item class="a" href="revisionesNuevas"
-                >Revisiones nuevas</b-dropdown-item
+                >publicaciones nuevas</b-dropdown-item
               >
               <b-dropdown-item class="a" href="infoEvaluadores?actu=1"
                 >Actualizar info</b-dropdown-item
@@ -47,7 +45,7 @@ export default {
   },
   methods: {
     loadPage() {
-      let url = "http://localhost:4000/api/evaluador/verificar?tipo=evaluador";
+      let url = "http://localhost:4000/api/evaluador/verificar";
       let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
       if (!evaluador) throw "forbbiden ";
       let token = evaluador.token
