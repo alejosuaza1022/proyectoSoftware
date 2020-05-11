@@ -24,7 +24,7 @@
           placeholder="ingrese  clave"
         ></b-form-input>
       </b-form-group>
-    <b-button variant="danger" class="ml-2 acciones" @click="login()">asd</b-button>
+    <b-button variant="danger" class="ml-2 acciones" @click="login()">Log in</b-button>
     
       <b-link   href="infoEvaluadores?actu=0">Regitrarme {{mensaje}}</b-link>
     </b-form>

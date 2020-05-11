@@ -18,7 +18,7 @@ export default {
         login() {
             console.log(this.evaluador.idevaluador, this.evaluador.clave)
             axios.post("http://localhost:4000/api/evaluador/login", {
-                    idevaluador: this.evaluador.idevaluador,
+                    id: this.evaluador.idevaluador,
                     clave: this.evaluador.clave
                 }).then(res => {
 

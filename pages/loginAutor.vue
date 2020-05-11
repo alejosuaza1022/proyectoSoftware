@@ -23,7 +23,7 @@
           placeholder="ingrese  clave"
         ></b-form-input>
       </b-form-group>
-      <b-button  type="submit" variant="outline-danger">Log in</b-button>
+      <b-button  @click="login()" variant="outline-danger">Log in</b-button>
     </b-form>
   </div>
 </template>
