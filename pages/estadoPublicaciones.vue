@@ -8,14 +8,14 @@
             variant="outline-danger"
             size="sm"
             v-if="registrar_revision"
-            @click="ver_estado(row)"
+            @click="registrar_rev(row)"
             class="mr-2 acciones"
             >corregir</b-button
           >
           <b-button
             variant="outline-danger"
             size="sm"
-            @click="corregir_propuesta(row)"
+            @click="ver_evalacuacion(row)"
             class="mr-2 acciones"
             v-if="ver_eval"
             >Ver evaluación</b-button
@@ -79,7 +79,13 @@ export default {
         .catch(erro => {
           console.log(erro);
         });
+    },ver_evalacuacion({item}){
+      
+    },
+    registrar_rev({item}){
+      this.$router.push("corregirPropuesta");
     }
+    
   }
 };
 </script>
