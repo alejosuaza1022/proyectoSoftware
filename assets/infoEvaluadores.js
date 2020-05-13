@@ -47,8 +47,6 @@ export default {
 
         crearEvaluador() {
             let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
-            let token = evaluador.token;
-            let ideval = evaluador.idevaluador;
             Axios.post('http://localhost:4000/api/evaluador/', this.evaluador).then(res => {
                 console.log(res)
                     //this.lista_evaluadores.push(this.evaluador);

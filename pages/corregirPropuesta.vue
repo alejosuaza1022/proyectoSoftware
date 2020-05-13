@@ -6,7 +6,7 @@
         img-alt="Image"
         img-top
         tag="article"
-        style="max-width: 25rem;"
+        style="max-width: 20rem;"
         class="mb-2 card-pdf"
       >
         <b-card-text>
@@ -31,7 +31,8 @@
         >
       </b-card>
     </div>
-    <div id="oelo"></div>
+    <div id="oelo">
+    </div>
   </div>
 </template>
 <style>
@@ -48,9 +49,9 @@
 </style>
 <script>
 import Axios from "axios";
-
 export default {
-
+   
+layout:"autor",
 
   data() {
     return {
@@ -61,14 +62,16 @@ export default {
   },
   methods: {
     actualizarFoto() {
-    
+  
       let url = "http://localhost:4000/api/publicacion_rev/";
       let data = this.archivo
       let formData = new FormData();
       formData.append("archivo", data);
-      formData.set("idpublicacion",4);
+     // body 
+     formData.set("idpublicacion",4);
       formData.set("idevaluador","1001");
       formData.set("fechasubida","05/24/2020")
+
       Axios.post(url, formData)
         .then(respuesta => {
           console.log(respuesta.data);

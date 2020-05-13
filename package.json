@@ -1,24 +1,25 @@
 {
-  "name": "gestionDeEvaluacionSoft",
-  "version": "1.0.0",
-  "description": "My shining Nuxt.js project",
-  "author": "softudem",
-  "private": true,
-  "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
-  },
-  "dependencies": {
-    "axios": "^0.19.2",
-    "base64topdf": "^1.1.8",
-    "bootstrap": "^4.1.3",
-    "bootstrap-vue": "^2.0.0",
-    "moment": "^2.25.3",
-    "nuxt": "^2.0.0",
-    "vue-pdf": "^4.0.8",
-    "vue-router": "^3.1.6"
-  },
-  "devDependencies": {}
+    "name": "gestionDeEvaluacionSoft",
+    "version": "1.0.0",
+    "description": "My shining Nuxt.js project",
+    "author": "softudem",
+    "private": true,
+    "scripts": {
+        "dev": "nuxt",
+        "build": "nuxt build",
+        "start": "nuxt start",
+        "generate": "nuxt generate"
+    },
+    "dependencies": {
+        "axios": "^0.19.2",
+        "base64topdf": "^1.1.8",
+        "bootstrap": "^4.1.3",
+        "bootstrap-vue": "^2.0.0",
+        "fs": "0.0.1-security",
+        "moment": "^2.25.3",
+        "nuxt": "^2.0.0",
+        "vue-pdf": "^4.0.8",
+        "vue-router": "^3.1.6"
+    },
+    "devDependencies": {}
 }

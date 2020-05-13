@@ -10,7 +10,6 @@
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <b-nav-item-dropdown text="Navegación" right>
-              
               <b-dropdown-item class="a" href="revisionesNuevas"
                 >publicaciones nuevas</b-dropdown-item
               >
@@ -20,6 +19,7 @@
               <b-dropdown-item class="a" href="evalPendientes"
                 >Evaluaciones pendientes</b-dropdown-item
               >
+              <b-dropdown-item class="a" href="/">log out</b-dropdown-item>
               <!--              <b-dropdown-item class = "a"  href="notificacionAutor">notificaciones</b-dropdown-item>
               <b-dropdown-item class = "a"  href="evalPublicacion">evalPublicaion</b-dropdown-item>
               <b-dropdown-item class = "a"  href="documentos">Documentos</b-dropdown-item>-->
@@ -48,7 +48,7 @@ export default {
       let url = "http://localhost:4000/api/evaluador/verificar";
       let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
       if (!evaluador) throw "forbbiden ";
-      let token = evaluador.token
+      let token = evaluador.token;
       axios
         .get(url, { headers: { token } })
         .then(response => {

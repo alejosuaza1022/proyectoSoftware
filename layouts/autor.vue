@@ -14,6 +14,10 @@
               <b-dropdown-item class="a" href="publicacionesAutor"
                 >Ver estado publicaciones</b-dropdown-item
               >
+              <b-dropdown-item class="a" href="/"
+                >log out</b-dropdown-item
+              >
+
               <!--              <b-dropdown-item class = "a"  href="notificacionAutor">notificaciones</b-dropdown-item>
               <b-dropdown-item class = "a"  href="evalPublicacion">evalPublicaion</b-dropdown-item>
               <b-dropdown-item class = "a"  href="documentos">Documentos</b-dropdown-item>-->
@@ -41,7 +45,8 @@ export default {
     loadPage() {
       let url = "http://localhost:4000/api/evaluador/verificar";
       let evaluador = JSON.parse(localStorage.getItem("Autor"));
-      if (!evaluador) throw "forbbiden ";
+      console.log(evaluador)
+      if (evaluador === null) throw "forbbiden ";
       let token = evaluador.token
       axios
         .get(url, { headers: { token } })

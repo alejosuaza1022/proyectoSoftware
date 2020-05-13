@@ -2,7 +2,7 @@
   <div>
     <b-container class="container">
       <h1>Publicaciones aceptadas por el comite</h1>
-      <b-table striped hover :items="lista_propuestas">
+      <b-table class="border border-dark text-center" responsive hover  head-variant="dark" :fields="fields" :items="lista_propuestas">
         <template v-slot:cell(acciones)="row">
           <div>
             <b-button
@@ -30,7 +30,29 @@ export default {
   data() {
     return {
       lista_propuestas: null,
-      url: "http://localhost:4000/api/autor/"
+      url: "http://localhost:4000/api/autor/",
+       fields:[
+         {
+          key:'id_publicacion',
+          label:'Id publicación',
+          variant:'dark'
+         },
+         {
+          key:'titulo',
+          label:'Título',
+        },
+        'facultad',
+         {
+          key:'tipo_publicacion',
+          label:'Tipo publicación'
+          
+        },
+        'area',
+          {key:'acciones',
+          class:'center'
+          
+          }
+          ]
     };
   },
   methods: {

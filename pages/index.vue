@@ -9,7 +9,12 @@
 
 <script>
 
-export default {};
+export default {
+  beforeMount(){
+    localStorage.clear()
+  }
+
+};
 </script>
 
 <style>
