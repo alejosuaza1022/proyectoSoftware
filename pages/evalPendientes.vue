@@ -49,12 +49,7 @@ export default {
       pdf:'',
       byteCharacters:[],
       fields:[
-         {
-           
-          key:'id_publicacion',
-          label:'Id publicación',
-          variant:'danger'
-         },
+        
          {
           key:'titulo',
           label:'Título',
