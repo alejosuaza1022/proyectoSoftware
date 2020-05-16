@@ -69,11 +69,15 @@ export default {
       var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
       var yyyy = today.getFullYear();
       today = mm + "/" + dd + "/" + yyyy;
-
+      var blob = new Blob([this.byteCharacters.get(item.id_publicacion)], {
+          type: "application/pdf"
+        })
+      console.log(blob, "oe")
       let data = this.archivo
       let formData = new FormData();
 
-      formData.append("archivo", this.byteCharacters.get(item.id_publicacion));
+
+      formData.append("archivo", blob);
      // body 
       
       formData.set("idevaluador","1001");
@@ -82,14 +86,14 @@ export default {
       formData.set("idpublicacion",item.id_publicacion),
       formData.set("estado",0),
 
-      console.log(item);
-      /*let propuesta = {
+     /* console.log(item);
+      let propuesta = {
         fechasubida: today,
         idevaluador: ideval,
-        idpublicacion: item.id,
-        archivo: "algo por ahora", // item.archivo,
+        idpublicacion: item.id_publicacion,// item.archivo,
         estado: 0,
-        archivo:this.byteCharacters[item.index]
+        archivo:this.byteCharacters.get(item.id_publicacion),
+        bool:true
       };*/
        Axios.post("http://localhost:4000/api/publicacion_rev", formData, {
         headers: { token }
@@ -112,8 +116,9 @@ export default {
           this.lista_propuestas = res.data.publicaciones.map(x => {
             var o = Object.assign({}, x); // asignar el campo acciones a todos los valores de la BD
             o.acciones = null;
+           // console.log(this.base64ToArrayBuffer(o.archivo))
            this.byteCharacters.set(x.id_publicacion,this.base64ToArrayBuffer(o.archivo));
-          console.log(o.archivo )  
+          
             return o;
           });
           console.log(this.lista_propuestas, "pro")
@@ -136,7 +141,7 @@ export default {
       var a = document.createElement("a");
       document.body.appendChild(a);
       a.style = "display: none";
-      var blob = new Blob([this.byteCharacters[row2.index]], {
+      var blob = new Blob([this.byteCharacters.get(row2.item.id_publicacion)], {
           type: "application/pdf"
         }), //
         url = window.URL.createObjectURL(blob);

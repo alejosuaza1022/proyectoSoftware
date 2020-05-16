@@ -1,13 +1,19 @@
 <template>
   <b-container class="container">
     <h1>Evaluaciones Pendientes</h1>
-    <b-table class="border border-danger text-center" responsive hover :items="lista_propuestas" :fields="fields"  head-variant="dark">
-     <template v-slot:cell(archivo)="row2">
-       <b-link  @click="descargar(row2)" class="hover">Descargar</b-link>
-     </template>
+    <b-table
+      class="border border-danger text-center"
+      responsive
+      hover
+      :items="lista_propuestas"
+      :fields="fields"
+      head-variant="dark"
+    >
+      <template v-slot:cell(archivo)="row2">
+        <b-link @click="descargar(row2)" class="hover">Descargar</b-link>
+      </template>
 
       <template v-slot:cell(acciones)="row">
-        
         <div>
           <b-button
             variant="outline-danger"
@@ -29,12 +35,11 @@
   </b-container>
 </template>
 .<style>
-a:link{
-color: red;
+a:link {
+  color: red;
 }
 </style>
 <script>
-
 import Axios from "axios";
 
 export default {
@@ -46,27 +51,23 @@ export default {
     return {
       lista_propuestas: null,
       url: "http://localhost:4000/api/evaluador/",
-      pdf:'',
-      byteCharacters:[],
-      fields:[
-        
-         {
-          key:'titulo',
-          label:'Título',
+      pdf: "",
+      byteCharacters: [],
+      byteCharacters: new Map(),
+      fields: [
+        {
+          key: "titulo",
+          label: "Título"
         },
-        'area',
-        'facultad',
-         {
-          key:'tipo_publicacion',
-          label:'Tipo publicación'
-          
+        "area",
+        "facultad",
+        {
+          key: "tipo_publicacion",
+          label: "Tipo publicación"
         },
-          'archivo',
-          {key:'acciones',
-          class:'center'
-          
-          }
-          ]
+        "archivo",
+        { key: "acciones", class: "center" }
+      ]
     };
   },
   methods: {
@@ -81,26 +82,22 @@ export default {
       let token = evaluador.token;
       let ideval = evaluador.idevaluador;
       let pdf = "";
-    
 
       Axios.get(
         `http://localhost:4000/api/evaluador/espera-evaluar/${ideval}`,
         { headers: { token } }
       )
         .then(res => {
-          console.log(res.data)
+          console.log(res.data);
           this.lista_propuestas = res.data.publicaciones.map(x => {
             var o = Object.assign({}, x); // asignar el campo acciones a todos los valores de la BD
             o.acciones = null;
             pdf = o.archivo;
-            o.archivo = "laksdjasd"
-            
+            o.archivo = "laksdjasd";
+          this.byteCharacters.set(x.idpub,this.base64ToArrayBuffer(pdf));
+
             return o;
           });
-          this.byteCharacters.push(this.base64ToArrayBuffer(pdf));
-
-          
-        
         })
         .catch(erro => {
           console.log(erro);
@@ -126,8 +123,11 @@ export default {
       var a = document.createElement("a");
       document.body.appendChild(a);
       a.style = "display: none";
-      var blob = new Blob([this.byteCharacters[row2.index]], { type: "application/pdf" }),//
-      url = window.URL.createObjectURL(blob);
+
+      var blob = new Blob([this.byteCharacters.get(row2.item.idpub)], {
+          type: "application/pdf"
+        }), //
+        url = window.URL.createObjectURL(blob);
       a.href = url;
       a.download = "Correción"; //
       a.click();

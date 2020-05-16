@@ -55,7 +55,9 @@ export default {
       registrar_revision: false,
       byteCharacters: [],
       retroalimentacion: null,
+      id_pub:null,
       publicacion_revisiones: [],
+      id_evaluador:null,
       url: "http://localhost:4000/api/autor/"
     };
   },
@@ -64,12 +66,14 @@ export default {
       let evaluador = JSON.parse(localStorage.getItem("Autor"));
       let token = evaluador.token;
       let ideval = evaluador.idautor;
-      let id_pub = this.$route.query.id_pub;
-      Axios.get(this.url + `estado-obra/${id_pub}/${ideval}`, {
+      this. id_pub = this.$route.query.id_pub;
+      Axios.get(this.url + `estado-obra/${this.id_pub}/${ideval}`, {
         headers: { token }
       })
         .then(res => {
+          console.log(res.data)
           let aux = res.data.publicacion[0];
+          this.id_evaluador = aux.id_evaluador
           let publicacion_revision = {};
           publicacion_revision.estado = aux.estado;
           publicacion_revision.titulo = aux.titulo;
@@ -77,7 +81,6 @@ export default {
           if (aux.est === 1) {
             this.registrar_revision = true;
             publicacion_revision.plazo_maximo = aux.plazo_maximo;
-            console.log(aux.retroalimentacion);
             this.byteCharacters.push(
               this.base64ToArrayBuffer(aux.retroalimentacion)
             );
@@ -98,7 +101,8 @@ export default {
     },
     ver_evalacuacion({ item }) {},
     registrar_rev({ item }) {
-      this.$router.push("corregirPropuesta");
+      
+      this.$router.push({path:"corregirPropuesta",query:{id_e : this.id_evaluador,id_pub:this.id_pub}});
     },
     base64ToArrayBuffer: function(base64) {
       var binaryString = window.atob(base64);

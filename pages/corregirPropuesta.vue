@@ -25,13 +25,11 @@
 
         <b-button
           variant="outline-danger"
-          @click="actualizarFoto"
+          @click="actualizar_correcion"
           class="upload-file margin"
           >Cargar Documento</b-button
         >
       </b-card>
-    </div>
-    <div id="oelo">
     </div>
   </div>
 </template>
@@ -50,35 +48,41 @@
 <script>
 import Axios from "axios";
 export default {
-   
-layout:"autor",
+  layout: "autor",
 
   data() {
     return {
       archivo: null,
-      tmppath:'',
-      b:false
+      tmppath: "",
+      b: false
     };
   },
   methods: {
-    actualizarFoto() {
-  
+    actualizar_correcion() {
       let url = "http://localhost:4000/api/publicacion_rev/";
-      let data = this.archivo
+      let data = this.archivo;
       let formData = new FormData();
       formData.append("archivo", data);
-     // body 
-     formData.set("idpublicacion",4);
-      formData.set("idevaluador","1001");
-      formData.set("fechasubida","05/24/2020")
-
+      let evaluador = JSON.parse(localStorage.getItem("Autor"));
+      let token = evaluador.token;
+      let id_eval = this.$route.query.id_e;
+      let id_pub = this.$route.query.id_pub
+      // body
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, "0");
+      var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+      var yyyy = today.getFullYear();
+      today = mm + "/" + dd + "/" + yyyy;
+      formData.set("idpublicacion", id_pub);
+      formData.set("idevaluador", id_eval);
+      formData.set("fechasubida", today);
       Axios.post(url, formData)
         .then(respuesta => {
           console.log(respuesta.data);
         })
         .catch(error => {});
     },
-    validar(){
+    validar() {
       this.tmppath = URL.createObjectURL(this.archivo);
     }
 

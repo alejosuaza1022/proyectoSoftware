@@ -9,6 +9,7 @@ export default {
             enEdicion: false,
             eval: true,
             mostrar: false,
+            archivo: null,
             correcion: {
                 id_publicacion: null,
                 fecha_evaluacion: "",
@@ -45,6 +46,13 @@ export default {
                  })*/
         }
 
+    },
+    updated() {
+        let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
+        let token = evaluador.token;
+        let ideval = evaluador.idevaluador;
+        this.eval = this.$route.query.eval;
+        console.log(this.eval)
     },
 
     mounted() {
@@ -89,7 +97,7 @@ export default {
 
             });
         },
-        crear_correcion() {
+        actualizar_retro() {
             let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
             let token = evaluador.token;
             let id = this.$route.query.id;
@@ -98,10 +106,13 @@ export default {
             var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
             var yyyy = today.getFullYear();
             today = mm + "/" + dd + "/" + yyyy;
-            Axios.put(`http://localhost:4000/api/publicacion_rev/${id}`, {
-                retroalimentacion: this.retroalimentacion,
-                fecha_realizada: today
-            }, {
+            let data = this.archivo;
+            let formData = new FormData();
+            formData.append("archivo", data);
+
+            formData.set("fecha_realizada", today);
+
+            Axios.put(`http://localhost:4000/api/publicacion_rev/${id}`, formData, {
                 headers: {
                     token
                 }
@@ -115,69 +126,7 @@ export default {
 
 
         },
-        created() {
 
-        },
-        get_position(id) {
-            return this.lista_correciones.findIndex(
-                correcion => correcion.id == id
-            );
-        },
-        eliminar_correcion({
-            item
-        }) {
-            this.lista_correciones.splice(this.get_position(item.id), 1);
-            this.agregarInfoLS();
-        },
-        cargar_correcion({
-            item
-        }) {
-            let auxCorre = this.lista_correciones.find(
-                correcion => correcion.id == item.id
-            );
-            this.enEdicion = true;
-            this.correcion = Object.assign({}, auxCorre);
-
-        },
-        actualizar_correcion() {
-            this.correcion.fecha_vencimiento = this.formatDate()
-            this.puntajeTotal();
-            this.lista_correciones.splice(this.get_position(this.correcion.id), 1, this.correcion);
-            this.correcion = {
-                id: null,
-                id_propuesta: null,
-                id_evaluador: null,
-                id_autor: null,
-                fecha: "",
-                documento_guia: "Seleccione una guía",
-                fecha_vencimiento: "",
-                organizacion_contenido: null,
-                estilo: null,
-                aportes_de_obra: null,
-                temporalidad: null,
-                resultado_final: null,
-                acciones: true,
-            };
-            this.agregarInfoLS();
-            this.enEdicion = false
-        },
-        // sumar 15 días habiles después de la creación de la fecha 
-        formatDate() {
-
-            var date = new Date(this.correcion.fecha)
-            date.setDate(date.getDate() + 16)
-            var d = new Date(date),
-                month = '' + (d.getMonth() + 1),
-                day = '' + d.getDate(),
-                year = d.getFullYear();
-
-            if (month.length < 2)
-                month = '0' + month;
-            if (day.length < 2)
-                day = '0' + day;
-
-            return [year, month, day].join('-');
-        },
         agregarInfoLS() {
             localStorage.setItem('registroEvDB', JSON.stringify(this.lista_correciones));
         }

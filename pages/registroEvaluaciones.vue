@@ -2,13 +2,10 @@
   <div>
     <b-container v-if="eval">
       <!-- Content here -->
-
       <h1>Gestión de correción de propuestas</h1>
       <br />
 
       <b-form action="javascript:void(0)" @submit="crear_evalua">
-  
-
         <b-form-group
           label="organización de contenido"
           label-for="organizacion_contenido"
@@ -127,22 +124,42 @@
       </b-table>
     </b-container>
     <b-container v-else>
-      <b-form action="javascript:void(0)" @submit="crear_correcion">
+    
         <h1>Gestión de correción de propuestas</h1>
-        <b-form-group label=" retroalimentación " label-for="retroalimentacion">
-          <b-form-textarea
-            class="form-control"
-            type="textbox"
-            v-model="retroalimentacion"
-            id="retroalimentacion"
-            placeholder="Ingrese la retroalimentacón para el usuario"
-          ></b-form-textarea>
-          <b-button type="submit" variant="danger" class="submit-button"
-            >Enviar correción</b-button
-          >
-        </b-form-group>
+        <div>
+          <div>
+            <b-card
+              img-src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/1200px-PDF_file_icon.svg.png"
+              img-alt="Image"
+              img-top
+              tag="article"
+              style="max-width: 20rem;"
+              class="mb-2 card-pdf"
+            >
+              <b-card-text>
+                por favor adjunte su pdf correción aquí
+              </b-card-text>
+
+              <b-form-file
+                accept=".pdf"
+                class="upload-file"
+                v-model="archivo"
+                :state="Boolean(archivo)"
+                placeholder="Seleccione su archivo..."
+                drop-placeholder="Drop file here..."
+              ></b-form-file>
+
+              <b-button
+                variant="outline-danger"
+                @click="actualizar_retro"
+                class="upload-file margin"
+                >Cargar Documento</b-button
+              >
+            </b-card>
+          </div>
+        </div>
         <br />
-      </b-form>
+
     </b-container>
   </div>
 </template>
