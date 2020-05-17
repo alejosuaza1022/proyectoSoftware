@@ -1,11 +1,84 @@
 <template>
   <div>
+    <b-modal
+      id="modal-2"
+      :header-bg-variant="model_header_color"
+      :body-text-variant="model_tbody_color"
+      header-class="text-center"
+      body-class="text-center"
+      title="Udem dice"
+      ok-only
+    >
+      <h4>
+        {{ message }}
+      </h4>
+    </b-modal>
+        <b-modal
+      id="modal-3"
+      :header-bg-variant="model_header_color"
+      :body-text-variant="model_tbody_color"
+      header-class="text-center"
+      body-class="text-center"
+      title="Udem dice"
+      ok-only
+    >
+      <h4>
+        {{ message }}
+      </h4>
+         <template v-slot:modal-ok>
+          <b-button
+            variant="outline-danger"
+            size="sm"
+            class="float-right"
+            @click="aceptar1"
+          >
+            Aceptar
+          </b-button>
+         
+   </template>
+    </b-modal>
+
+    <b-modal
+      id="modal-1"
+      header-bg-variant="danger"
+      body-text-variant="danger"
+      header-class="text-center"
+      body-class="text-center"
+      title="¡ADVERTENCIA!"
+    >
+      <h4>
+        {{message}}
+      </h4>
+
+      <p class="my-4"></p>
+      <template v-slot:modal-footer>
+        <div class="w-200">
+          <b-button
+            variant="outline-danger"
+            size="sm"
+            class="float-right"
+            @click="aceptar"
+          >
+            Aceptar
+          </b-button>
+          <b-button
+            variant="outline-danger"
+            size="sm"
+            class="float-md-right"
+            @click="cancelar"
+          >
+            Cancelar
+          </b-button>
+        </div>
+      </template>
+    </b-modal>
+
     <b-container v-if="eval">
       <!-- Content here -->
       <h1>Gestión de correción de propuestas</h1>
       <br />
 
-      <b-form action="javascript:void(0)" @submit="crear_evalua">
+      <b-form action="javascript:void(0)" @submit="abrir_model_evl">
         <b-form-group
           label="organización de contenido"
           label-for="organizacion_contenido"
@@ -93,73 +166,47 @@
           type="submit"
           variant="danger"
           class="submit-button"
-          v-if="!enEdicion"
           >Evaluar correcion</b-button
         >
 
-        <b-button
-          @click="actualizar_correcion()"
-          variant="danger"
-          class="submit-button"
-          v-else
-          >Actualizar Correcion</b-button
-        >
+    
       </b-form>
 
-      <b-table striped hover :items="lista_correciones">
-        <template v-slot:cell(acciones)="row" v-if="!mostrar">
-          <b-button
-            size="sm"
-            @click="cargar_correcion(row)"
-            class="mr-2 acciones"
-            >Modificar</b-button
-          >
-          <b-button
-            size="sm"
-            @click="eliminar_correcion(row)"
-            class="mr-2 acciones"
-            >Eliminar</b-button
-          >
-        </template>
-      </b-table>
     </b-container>
     <b-container v-else>
-    
-        <h1>Gestión de correción de propuestas</h1>
+      <h1>Gestión de correción de propuestas</h1>
+      <div>
         <div>
-          <div>
-            <b-card
-              img-src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/1200px-PDF_file_icon.svg.png"
-              img-alt="Image"
-              img-top
-              tag="article"
-              style="max-width: 20rem;"
-              class="mb-2 card-pdf"
+          <b-card
+            img-src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/1200px-PDF_file_icon.svg.png"
+            img-alt="Image"
+            img-top
+            tag="article"
+            style="max-width: 20rem;"
+            class="mb-2 card-pdf"
+          >
+            <b-card-text>
+              por favor adjunte su pdf correción aquí
+            </b-card-text>
+
+            <b-form-file
+              accept=".pdf"
+              class="upload-file"
+              v-model="archivo"
+              :state="Boolean(archivo)"
+              placeholder="Seleccione su archivo..."
+              drop-placeholder="Drop file here..."
+            ></b-form-file>
+
+            <b-button
+              variant="outline-danger"
+              @click="abrir_model_retro"
+              class="upload-file margin"
+              >Cargar Documento</b-button
             >
-              <b-card-text>
-                por favor adjunte su pdf correción aquí
-              </b-card-text>
-
-              <b-form-file
-                accept=".pdf"
-                class="upload-file"
-                v-model="archivo"
-                :state="Boolean(archivo)"
-                placeholder="Seleccione su archivo..."
-                drop-placeholder="Drop file here..."
-              ></b-form-file>
-
-              <b-button
-                variant="outline-danger"
-                @click="actualizar_retro"
-                class="upload-file margin"
-                >Cargar Documento</b-button
-              >
-            </b-card>
-          </div>
+          </b-card>
         </div>
-        <br />
-
+      </div>
     </b-container>
   </div>
 </template>

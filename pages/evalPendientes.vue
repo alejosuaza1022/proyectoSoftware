@@ -2,7 +2,7 @@
   <b-container class="container">
     <h1>Evaluaciones Pendientes</h1>
     <b-table
-      class="border border-danger text-center"
+      class="border border-dark text-center"
       responsive
       hover
       :items="lista_propuestas"

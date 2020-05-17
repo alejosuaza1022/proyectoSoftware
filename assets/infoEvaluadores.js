@@ -10,11 +10,14 @@ export default {
                 nombre: "",
                 apellidos: "",
                 idevaluador: "",
-                email: "",
+                correo: "",
                 afiliacion: "",
                 cargo: "",
                 clave: ""
             },
+            model_header_color: "",
+            model_tbody_color: "",
+            message: "",
             lista_evaluadores: [],
 
         };
@@ -55,28 +58,29 @@ export default {
                         nombre: "",
                         apellidos: "",
                         idevaluador: "",
-                        email: "",
+                        correo: "",
                         afiliacion: "",
                         cargo: "",
                         clave: ""
                     },
-                    this.$router.push('loginEvaluador')
+                    this.retroalimentacion = null;
+                this.message = " se ha registrado exitosamente ";
+                this.model_header_color = "success";
+                this.model_tbody_color = "dark";
+                this.$bvModal.show("modal-2");
+
 
             }).catch(error => {
+                this.message =
+                    " se ha producido un error, por favor intente más tarde ";
+                this.model_header_color = "danger";
+                this.model_tbody_color = "danger  ";
+                this.$bvModal.show("modal-2");
                 console.log(error)
 
             })
 
 
-        },
-        eliminarEstudiante({
-            item
-        }) {
-            let posicion = this.lista_evaluadores.findIndex(
-                evaluador => evaluador.cc == item.cc
-            );
-            this.lista_evaluadores.splice(posicion, 1);
-            this.agregarInfoLS();
         },
         agregarInfoLS() {
             localStorage.setItem('registroEvalu', JSON.stringify(this.lista_evaluadores));
@@ -94,23 +98,40 @@ export default {
                 console.log(res)
 
                 this.evaluador = {
-                        nombre: "",
-                        apellidos: "",
-                        idevaluador: "",
-                        email: "",
-                        afiliacion: "",
-                        cargo: "",
-                        clave: ""
-                    },
-                    this.$router.push('loginEvaluador')
+                    nombre: "",
+                    apellidos: "",
+                    idevaluador: "",
+                    correo: "",
+                    afiliacion: "",
+                    cargo: "",
+                    clave: ""
+                }
+
 
             }).catch(error => {
+
                 console.log(error)
 
             })
 
 
         },
+        aceptar1() {
+            this.$bvModal.hide("modal-2");
+            this.$router.push('loginEvaluador')
+        },
+        aceptar() {
+            this.$bvModal.hide("modal-1");
+            this.crearEvaluador();
+        },
+        mostrar() {
+            this.$bvModal.show("modal-1");
+        },
+
+        cancelar() {
+            this.$bvModal.hide("modal-1");
+        },
+
         // verificar existencia de datos o creación de intancia nueva
         created() {
             let datosLS = JSON.parse(localStorage.getItem('registroEvalu'));

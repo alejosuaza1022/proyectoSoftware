@@ -25,14 +25,27 @@ export default {
             retroalimentacion: null,
             lista_correciones: [],
             lista_reducida: [],
+            model_header_color: "",
+            model_tbody_color: "",
+            message: "",
         };
     },
     beforeMount() {
         let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
         let token = evaluador.token;
         let ideval = evaluador.idevaluador;
-        this.eval = this.$route.query.eval;
-        console.log(this.eval)
+        if (this.$route.query.eval !== null) {
+            let tmp = this.$route.query.eval.toString()
+            if (tmp === 'false')
+
+                this.eval = false;
+            else
+                this.eval = true
+
+        } else {
+            this.$router.push("evalPendientes")
+        }
+
         if (eval) {
             /* Axios.get(`http://localhost:4000/api/evaluador/obtener_evaluadas/${ideval}`, {
                      headers: {
@@ -47,19 +60,42 @@ export default {
         }
 
     },
-    updated() {
-        let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
-        let token = evaluador.token;
-        let ideval = evaluador.idevaluador;
-        this.eval = this.$route.query.eval;
-        console.log(this.eval)
-    },
 
     mounted() {
 
     },
     methods: {
+        aceptar() {
+            if (this.eval === false)
+                this.actualizar_retro()
+            else
+                this.crear_evalua();
+            this.$bvModal.hide("modal-1");
+        },
+        aceptar1() {
+            let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
+            this.$bvModal.hide("modal-3");
+            this.$router.push({
+                path: "evaluadorPrincipal",
+                query: {
+                    nombre: evaluador.nombre
+                }
+            })
+        },
+
+        cancelar() {
+            this.$bvModal.hide("modal-1");
+        },
+        abrir_model_evl() {
+            this.message = "¿está seguro con la evaluación?, recuerde que esta evaluación es definitiva";
+            this.$bvModal.show("modal-1");
+        },
+        abrir_model_retro() {
+            this.message = "recuerde que podra actualizar documento simplemente volviendolo a cargar aquí mismo, acción que no será posible si carga un documento y deja la página"
+            this.$bvModal.show("modal-1");
+        },
         crear_evalua() {
+            console.log("laksdfjlakdfj")
             let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
             let token = evaluador.token;
             var today = new Date();
@@ -76,7 +112,9 @@ export default {
             corr.id = this.$route.query.idrev
 
             Axios.post(`http://localhost:4000/api/registro_eval`, corr, {
-                headers: { token }
+                headers: {
+                    token
+                }
             }).then(res => {
                 console.log(res)
                     //this.lista_correciones.push(this.correcion);
@@ -90,10 +128,20 @@ export default {
                     comentarios: null,
                     acciones: true,
                 }
-                this.$router.push({ path: "evaluadorPrincipal", query: { nombre: evaluador.nombre } })
-                    // this.agregarInfoLS();
+                this.retroalimentacion = null
+                this.message = " evaluación registrada con exito ";
+                this.model_header_color = "success";
+                this.model_tbody_color = "dark";
+                this.$bvModal.show("modal-3");
+
+                // this.agregarInfoLS();
             }).catch(error => {
                 console.log(error)
+                this.message =
+                    " se ha producido un error, por favor intente más tarde";
+                this.model_header_color = "danger";
+                this.model_tbody_color = "danger  ";
+                this.$bvModal.show("modal-3");
 
             });
         },
@@ -111,15 +159,24 @@ export default {
             formData.append("archivo", data);
 
             formData.set("fecha_realizada", today);
-
+            console.log("oelo")
             Axios.put(`http://localhost:4000/api/publicacion_rev/${id}`, formData, {
                 headers: {
                     token
                 }
             }).then(res => {
                 this.retroalimentacion = null
+                this.message = " retroalimentación agregada con exito ";
+                this.model_header_color = "success";
+                this.model_tbody_color = "dark";
+                this.$bvModal.show("modal-3");
                 console.log(res.data)
             }).catch(error => {
+                this.message =
+                    " se ha producido un error, por favor intente más tarde";
+                this.model_header_color = "danger";
+                this.model_tbody_color = "danger  ";
+                this.$bvModal.show("modal-2");
                 console.log(error)
 
             })

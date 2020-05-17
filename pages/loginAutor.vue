@@ -20,6 +20,7 @@
           id="input-2"
           v-model="autor.clave"
           required
+          type="password"
           placeholder="ingrese  clave"
         ></b-form-input>
       </b-form-group>

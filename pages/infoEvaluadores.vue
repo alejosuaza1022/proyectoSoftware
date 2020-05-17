@@ -2,13 +2,70 @@
 <template>
 
   <div class="content">
+     <b-modal
+      id="modal-2"
+      :header-bg-variant="model_header_color"
+      :body-text-variant="model_tbody_color"
+      header-class="text-center"
+      body-class="text-center"
+      title="Udem dice"
+      ok-only
+    >
+      <h4>
+        {{ message }}
+      </h4>
+      <template v-slot:modal-ok>
+        <b-button
+          variant="outline-danger"
+          size="sm"
+          class="float-right"
+          @click="aceptar1"
+        >
+          Aceptar
+        </b-button>
+      </template>
+    </b-modal>
+    <b-modal
+      id="modal-1"
+      header-bg-variant="danger"
+      body-text-variant="danger"
+      header-class="text-center"
+      body-class="text-center"
+      title="¡ADVERTENCIA!"
+    >
+      <h4>
+        ¿Desea registrarse con estos datos?, 
+             </h4>
+
+      <p class="my-4"></p>
+      <template v-slot:modal-footer>
+        <div class="w-200">
+          <b-button
+            variant="outline-danger"
+            size="sm"
+            class="float-right"
+            @click="aceptar"
+          >
+            Aceptar
+          </b-button>
+          <b-button
+            variant="outline-danger"
+            size="sm"
+            class="float-md-right"
+            @click="cancelar"
+          >
+            Cancelar
+          </b-button>
+        </div>
+      </template>
+    </b-modal>
     <b-container>
       <!-- Content here -->
 
       <h1>Formulario de evaluadores</h1>
       <br />
 
-      <b-form action="javascript:void(0)" @submit="crearEvaluador()" >
+      <b-form action="javascript:void(0)" @submit="mostrar" >
         <b-form-group label="Nombre" label-for="nombre">
           <b-form-input
             class="form-control"
@@ -45,7 +102,7 @@
             class="form-control"
             v-bind:required="true"
             type="email"
-            v-model="evaluador.email"
+            v-model="evaluador.correo"
             placeholder="Ingrese su email"
             id="email"
           />
