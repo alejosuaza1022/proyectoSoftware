@@ -34,7 +34,7 @@
       title="¡ADVERTENCIA!"
     >
       <h4>
-        ¿Desea registrarse con estos datos?, 
+        ¿Desea registrarse con estos datos? 
              </h4>
 
       <p class="my-4"></p>

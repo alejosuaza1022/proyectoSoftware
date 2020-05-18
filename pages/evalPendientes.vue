@@ -46,6 +46,7 @@ export default {
   layout: "evaluador",
   beforeMount() {
     this.cargar_propuestas();
+        localStorage.removeItem("Pub_eval")
   },
   data() {
     return {
@@ -53,6 +54,7 @@ export default {
       url: "http://localhost:4000/api/evaluador/",
       pdf: "",
       byteCharacters: [],
+      pub_autor: new Map(),
       byteCharacters: new Map(),
       fields: [
         {
@@ -72,6 +74,7 @@ export default {
   },
   methods: {
     evaluar_propuesta({ item }) {
+      localStorage.setItem("Pub_eval",this.pub_autor.get(item.id));
       this.$router.push({
         path: "registroEvaluaciones",
         query: { idpub: item.idpub, eval: true, idrev: item.id }
@@ -94,8 +97,8 @@ export default {
             o.acciones = null;
             pdf = o.archivo;
             o.archivo = "laksdjasd";
-          this.byteCharacters.set(x.idpub,this.base64ToArrayBuffer(pdf));
 
+          this.byteCharacters.set(x.idpub,this.base64ToArrayBuffer(pdf));
             return o;
           });
         })
@@ -104,6 +107,9 @@ export default {
         });
     },
     corregir_propuesta({ item }) {
+      console.log(item,this.pub_autor)
+      let info = {id_publicacion:item.idpub,id_autor:item.id_autor,correo:item.correo}  
+      localStorage.setItem("Pub_eval",JSON.stringify(info));
       this.$router.push({
         path: "registroEvaluaciones",
         query: { id: item.id, eval: false }

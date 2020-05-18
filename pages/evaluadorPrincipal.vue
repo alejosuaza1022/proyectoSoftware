@@ -17,7 +17,11 @@ export default {
         }
 
     },
+    beforeMount(){
+   localStorage.removeItem("Pub_eval")
+    },
     mounted(){
+     
         this.assignar();
     }
     
