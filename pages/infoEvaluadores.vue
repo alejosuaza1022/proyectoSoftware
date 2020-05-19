@@ -59,7 +59,10 @@
         </div>
       </template>
     </b-modal>
+
+
     <b-container>
+       <b-card class="bcard">
       <!-- Content here -->
 
       <h1>Formulario de evaluadores</h1>
@@ -151,6 +154,7 @@
           <b-button size="sm" @click="eliminarEstudiante(row)" class="mr-2 acciones" >Eliminar</b-button>
         </template>
       </b-table> -->
+       </b-card>
     </b-container>
   </div>
 </template>

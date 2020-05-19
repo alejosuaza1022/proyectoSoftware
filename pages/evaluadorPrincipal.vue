@@ -13,7 +13,7 @@ export default {
     },
     methods:{
         assignar(){
-            this.nombre = this.$route.query.nombre
+             this.nombre =JSON.parse(localStorage.getItem("Evaluador")).nombre 
         }
 
     },
