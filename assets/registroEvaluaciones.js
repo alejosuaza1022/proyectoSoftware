@@ -144,6 +144,48 @@ export default {
                 this.$bvModal.show("modal-3");
 
             });
+
+            //Enviar correo de notificación
+            var p1 = parseFloat(this.correcion.organizacion)
+            var p2 = parseFloat(this.correcion.estilo)
+            var p3 = parseFloat(this.correcion.aportes_obras)
+            var p4 = parseFloat(this.correcion.temporalidad)
+            var p5 = parseFloat(this.correcion.concepto)
+            var comentarios = this.correcion.comentarios
+            if(!comentarios){
+                comentarios = "sin comentarios"
+            }
+            let generarPDF = {
+                template: "formatoEvaluacion",
+                data:{
+                    publicacion: this.$route.query.titulo,
+                    nota1: p1,
+                    nota2: p2,
+                    nota3: p3,
+                    nota4: p4,
+                    nota5: p5,
+                    comentarios
+                }
+            }
+
+            let notificación = {
+                template: "publicacionEvaluada",
+                nombre: this.$route.query.nombre,
+                publicacion: this.$route.query.titulo,
+                to: this.$route.query.correo,
+                subject: "Evaluación de propuesta",
+                attachments: "nuevoPdf.pdf"
+            }
+            Axios.post("http://localhost:4000/api/pdf", generarPDF)
+            .then(res =>{
+                Axios.post("http://localhost:4000/api/mail", notificación)
+                .then(res =>{
+                    console.log(res)
+                })
+            }).catch(error => {
+                console.log("Nos metimos por aca jaja", error)
+            })
+
         },
         actualizar_retro() {
             let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
@@ -182,6 +224,21 @@ export default {
 
             })
 
+            let notificación = {
+                template: "publicacionRetroalimentacion",
+                nombre: this.$route.query.nombre,
+                publicacion: this.$route.query.titulo,
+                to: this.$route.query.correo,
+                subject: "Retroalimentación de propuesta",
+            }
+
+            Axios.post("http://localhost:4000/api/mail", notificación)
+                .then(res =>{
+                    console.log(res)
+                })
+                .catch(error => {
+                    console.log(error)
+                })
 
         },
 

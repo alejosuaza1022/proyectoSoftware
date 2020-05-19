@@ -77,7 +77,7 @@ export default {
       localStorage.setItem("Pub_eval",this.pub_autor.get(item.id));
       this.$router.push({
         path: "registroEvaluaciones",
-        query: { idpub: item.idpub, eval: true, idrev: item.id }
+        query: { idpub: item.idpub, eval: true, idrev: item.id, nombre: item.nombre, correo: item.correo, titulo: item.titulo }
       });
     },
     cargar_propuestas() {
@@ -97,8 +97,8 @@ export default {
             o.acciones = null;
             pdf = o.archivo;
             o.archivo = "laksdjasd";
-
           this.byteCharacters.set(x.idpub,this.base64ToArrayBuffer(pdf));
+            
             return o;
           });
         })
@@ -112,7 +112,7 @@ export default {
       localStorage.setItem("Pub_eval",JSON.stringify(info));
       this.$router.push({
         path: "registroEvaluaciones",
-        query: { id: item.id, eval: false }
+        query: { id: item.id, eval: false, nombre: item.nombre, titulo: item.titulo, correo: item.correo }
       });
     },
     base64ToArrayBuffer: function(base64) {
