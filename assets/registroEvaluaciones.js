@@ -152,6 +152,9 @@ export default {
             var p4 = parseFloat(this.correcion.temporalidad)
             var p5 = parseFloat(this.correcion.concepto)
             var comentarios = this.correcion.comentarios
+            if(!comentarios){
+                comentarios = "sin comentarios"
+            }
             let generarPDF = {
                 template: "formatoEvaluacion",
                 data:{
