@@ -31,7 +31,8 @@
              <b-nav-item :to="{ name: 'evalPendientes' }"
              class="margin" ><b><i>Evaluaciones En Proceso</i></b></b-nav-item
             >
-             <b-nav-item :to="{ name: 'infoEvaluadores?actu=1' }"
+             <b-nav-item 
+             @click="actualizar"
               class="margin"><b><i>Actualizar informacion</i></b></b-nav-item
             >
           </b-navbar-nav>
@@ -54,6 +55,9 @@ export default {
     return {};
   },
   methods: {
+    actualizar(){
+        this.$router.push("infoEvaluadores?actu=1");
+    },
     loadPage() {
       let url = "http://localhost:4000/api/evaluador/verificar";
       let evaluador = JSON.parse(localStorage.getItem("Evaluador"));

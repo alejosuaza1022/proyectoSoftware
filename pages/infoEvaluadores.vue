@@ -14,12 +14,36 @@
       <h4>
         {{ message }}
       </h4>
-      <template v-slot:modal-ok>
+     <template v-slot:modal-footer>
         <b-button
-          variant="outline-danger"
+          variant="outline-success"
           size="sm"
           class="float-right"
           @click="aceptar1"
+        >
+          Aceptar
+        </b-button>
+      </template>
+    </b-modal>
+     <b-modal
+      id="modal-3"
+      header-bg-variant="success"
+      body-text-variant="dark"
+      header-class="text-center"
+      footer-bg-variant="light"
+      body-class="text-center"
+      title="Udem dice"
+      ok-only
+    >
+      <h4>
+       Se ha actualizado su información
+      </h4>
+      <template v-slot:modal-footer>
+        <b-button
+          variant="outline-success"
+          size="sm"
+          class="float-right"
+          @click="aceptar2"
         >
           Aceptar
         </b-button>
@@ -133,17 +157,18 @@
             placeholder="Ingrese su cargo"
           />
         </b-form-group>
-         <b-form-group label="clave" label-for="clave"  v-if="!aux">
+         <b-form-group label="Clave" label-for="clave"  v-if="!aux">
           <b-form-input
             class="form-control"
             type="password"
             v-bind:required="true"
-           
+            
             v-model="evaluador.clave"
             id="clave"
             placeholder="Ingrese su clave"
           />
         </b-form-group>
+
         <b-button type="submit" variant="danger" v-if="!aux" class="submit-button">Crear evaluador</b-button>
         <b-button  @click="actualizarEvaluador()"  variant="danger" v-else class="submit-button">Actualizar evaluador</b-button>
       </b-form>
@@ -172,6 +197,7 @@
     box-shadow: 0 0 0px !important;
  
     }
+ 
     
     
 </style>

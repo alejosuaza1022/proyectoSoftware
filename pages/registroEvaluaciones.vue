@@ -25,9 +25,9 @@
       <h4>
         {{ message }}
       </h4>
-         <template v-slot:modal-ok>
-          <b-button
-            variant="outline-danger"
+       <template v-slot:modal-footer>
+        <b-button
+          variant="outline-success"
             size="sm"
             class="float-right"
             @click="aceptar1"

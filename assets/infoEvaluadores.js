@@ -82,9 +82,6 @@ export default {
 
 
         },
-        agregarInfoLS() {
-            localStorage.setItem('registroEvalu', JSON.stringify(this.lista_evaluadores));
-        },
 
         actualizarEvaluador() {
             let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
@@ -95,18 +92,13 @@ export default {
                     token
                 }
             }).then(res => {
-                console.log(res)
-
-                this.evaluador = {
-                    nombre: "",
-                    apellidos: "",
-                    idevaluador: "",
-                    correo: "",
-                    afiliacion: "",
-                    cargo: "",
-                    clave: ""
-                }
-
+                localStorage.removeItem("Evaluador")
+                this.agregarInfoLS({
+                    idevaluador: ideval,
+                    token: token,
+                    nombre: this.evaluador.nombre
+                })
+                this.$bvModal.show("modal-3");
 
             }).catch(error => {
 
@@ -119,6 +111,25 @@ export default {
         aceptar1() {
             this.$bvModal.hide("modal-2");
             this.$router.push('loginEvaluador')
+        },
+        aceptar2() {
+            this.$bvModal.hide("modal-3");
+            this.$router.push({
+                path: "evaluadorPrincipal",
+                query: {
+                    nombre: this.evaluador.nombre
+                }
+            })
+
+            this.evaluador = {
+                nombre: "",
+                apellidos: "",
+                idevaluador: "",
+                correo: "",
+                afiliacion: "",
+                cargo: "",
+                clave: ""
+            }
         },
         aceptar() {
             this.$bvModal.hide("modal-1");
@@ -139,6 +150,11 @@ export default {
                 this.lista_evaluadores = [];
             else
                 this.lista_evaluadores = datosLS;
+        },
+        agregarInfoLS(item) {
+            console.log(item);
+            localStorage.setItem('Evaluador', JSON.stringify(item));
+
         },
 
     }

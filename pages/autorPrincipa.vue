@@ -13,12 +13,13 @@
     >
       <b-card-text class="size">
         Recuerde que toda la información contenida y que será proporcionada aquí
-        es privada, lo cual quiere decir que las unica persona con acceso a los
-        documentos que usted como a autor publica solo podrá ser accedido por 
-        implicaciones .
-        <br />
-        A continuación podrá descargar los dos diferentes formatos de
-        evaluación:
+        es privada, lo cual quiere decir que las unica personas con acceso a los
+        documentos que usted como autor publica, serán, 
+        el evaluador al cuál sea asignado la evalución y el comite que es responsable del seguimiento.
+        <br>
+        Aquí en esta página podrá revisar el estado de sus propuetas publicadas y en caso de que se requiera 
+        una correción podrá hacer la respectiva. 
+      
       </b-card-text>
       <!-- <b-card-img  @click="app" style="max-width: 10rem;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/1200px-PDF_file_icon.svg.png"  >
           <b-card-text >
