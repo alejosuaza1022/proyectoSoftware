@@ -87,6 +87,9 @@
           <b-form-input
             class="form-control"
             type="number"
+            step="0.1"
+            min="0"
+            max="10"
             v-bind:required="true"
             v-model="correcion.organizacion"
             id="organizacion_contenido"
@@ -102,6 +105,9 @@
           <b-form-input
             class="form-control"
             type="number"
+            step="0.1"
+            min="0"
+            max="10"
             v-model="correcion.estilo"
             id="estilo"
             v-bind:required="true"
@@ -117,6 +123,9 @@
           <b-form-input
             class="form-control"
             type="number"
+            step="0.1"
+            min="0"
+            max="10"
             v-bind:required="true"
             v-model="correcion.aportes_obras"
             id="aportes_de_obra"
@@ -134,6 +143,9 @@
             type="number"
             v-model="correcion.temporalidad"
             id="temporalidad"
+            step="0.1"
+            min="0"
+            max="10"
             v-bind:required="true"
             placeholder="Ingrese temporalidad"
           ></b-form-input>
@@ -146,8 +158,11 @@
           <b-form-input
             class="form-control"
             type="number"
+            step="0.1"
+            min="0"
+            max="10"
             v-model="correcion.concepto"
-            id="temporalidad"
+            id="concepto"
             v-bind:required="true"
             placeholder="Ingrese concepto"
           ></b-form-input>
