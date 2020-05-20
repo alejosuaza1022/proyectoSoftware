@@ -115,8 +115,24 @@ export default {
       b: false,
       model_header_color: "",
       model_tbody_color: "",
-      message: ""
+      message: "",
+      eval_correo: "",
+      eval_nombre: ""
     };
+  },
+  mounted() {
+    let idEval = this.$route.query.id_e
+    let url = `http://localhost:4000/api/evaluador/${idEval}`
+    let autor = JSON.parse(localStorage.getItem("Autor"))
+    let token = autor.token
+    Axios.get(url, {headers: {token}})
+    .then(res =>{
+      this.eval_correo = res.data.evaluador.correo
+      this.eval_nombre = res.data.evaluador.nombre
+    }).catch(error =>{
+      console.log(error)
+    })
+
   },
   methods: {
     actualizar_correcion() {
@@ -154,6 +170,21 @@ export default {
           this.model_tbody_color = "danger  ";
           this.$bvModal.show("modal-2");
         });
+
+        let notificación = {
+                template: "correccionAutor",
+                publicacion: this.$route.query.titulo,
+                to: this.eval_correo,
+                nombre: this.eval_nombre,
+                subject: "Corrección de una propuesta"
+            }
+        Axios.post("http://localhost:4000/api/mail", notificación)
+            .then(res =>{
+                console.log(res)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     },
     validar() {
       this.tmppath = URL.createObjectURL(this.archivo);
