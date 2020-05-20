@@ -58,6 +58,7 @@ export default {
       id_pub:null,
       publicacion_revisiones: [],
       id_evaluador:null,
+      titulo_pub: "",
       url: "http://localhost:4000/api/autor/"
     };
   },
@@ -77,6 +78,7 @@ export default {
           let publicacion_revision = {};
           publicacion_revision.estado = aux.estado;
           publicacion_revision.titulo = aux.titulo;
+          this.titulo_pub = aux.titulo
 
           if (aux.est === 1) {
             this.registrar_revision = true;
@@ -102,7 +104,7 @@ export default {
     ver_evalacuacion({ item }) {},
     registrar_rev({ item }) {
       
-      this.$router.push({path:"corregirPropuesta",query:{id_e : this.id_evaluador,id_pub:this.id_pub}});
+      this.$router.push({path:"corregirPropuesta",query:{id_e : this.id_evaluador,id_pub:this.id_pub, titulo: this.titulo_pub}});
     },
     base64ToArrayBuffer: function(base64) {
       var binaryString = window.atob(base64);
