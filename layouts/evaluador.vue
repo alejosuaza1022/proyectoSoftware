@@ -24,15 +24,15 @@
 
         <b-collapse is-nav id="nav_collapse">
           <b-navbar-nav >
-            <b-nav-item :to="{ name: 'evaluadorPrincipal' }" class="margin">Principal</b-nav-item>
+            <b-nav-item :to="{ name: 'evaluadorPrincipal' }" class="margin"><b><i>Principal</i></b></b-nav-item>
             <b-nav-item :to="{ name: 'revisionesNuevas' } "
-             class="margin" >Publicaciones Nuevas</b-nav-item
+             class="margin" ><b><i>Publicaciones Nuevas</i></b></b-nav-item
             >
              <b-nav-item :to="{ name: 'evalPendientes' }"
-             class="margin" >Evaluaciones En Proceso</b-nav-item
+             class="margin" ><b><i>Evaluaciones En Proceso</i></b></b-nav-item
             >
              <b-nav-item :to="{ name: 'infoEvaluadores?actu=1' }"
-              class="margin">Actualizar informacion</b-nav-item
+              class="margin"><b><i>Actualizar informacion</i></b></b-nav-item
             >
           </b-navbar-nav>
         </b-collapse>
@@ -60,7 +60,7 @@ export default {
       if (!evaluador)  window.location.replace("http://localhost:3000/forbbiden");
       let token = evaluador.token;
       axios
-        .get(url, { headers: { token } })
+        .get(url, { headers: { token,modulo:'evaluador'} })
         .then(response => {
           console.log(response);
         })
@@ -135,7 +135,6 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: center;
   align-content: stretch;
   -webkit-box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
   -moz-box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);

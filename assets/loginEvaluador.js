@@ -6,29 +6,57 @@ export default {
     },
     data() {
         return {
+
+            message: '',
             mensaje: '',
+            model_header_color: '',
+            model_tbody_color: '',
 
             evaluador: {
-                idevaluador: null,
-                clave: null
+                idevaluador: '',
+                clave: ''
             }
         };
     },
     methods: {
+
         login() {
+            if (this.evaluador.idevaluador.length === 0 || this.evaluador.clave.length === 0) {
+                this.model_header_color = "danger";
+                this.model_tbody_color = "danger  ";
+                this.message = 'Clave y usuario obligatorios'
+                this.$bvModal.show("modal-1");
+                return
+            }
             console.log(this.evaluador.idevaluador, this.evaluador.clave)
             axios.post("http://localhost:4000/api/evaluador/login", {
                     id: this.evaluador.idevaluador,
-                    clave: this.evaluador.clave
+                    clave: this.evaluador.clave,
                 }).then(res => {
 
                     if (res) {
-                        this.agregarInfoLS({ idevaluador: this.evaluador.idevaluador, token: res.data['info'], nombre: res.data['nombre'] })
+                        this.agregarInfoLS({
+                            idevaluador: this.evaluador.idevaluador,
+                            token: res.data['info'],
+                            nombre: res.data['nombre']
+                        })
 
                     }
-                    this.$router.push({ path: "evaluadorPrincipal", query: { nombre: res.data['nombre'] } });
+                    this.$router.push({
+                        path: "evaluadorPrincipal",
+                        query: {
+                            nombre: res.data['nombre']
+                        }
+                    });
                 })
-                .catch(err => (console.log("ha ocurrido el error :" + err)));
+                .catch(err => {
+                        this.model_header_color = "danger";
+                        this.model_tbody_color = "danger  ";
+                        this.message = 'Claves y/o usuario erroneos'
+                        this.$bvModal.show("modal-1");
+                    }
+
+                );
 
 
         },

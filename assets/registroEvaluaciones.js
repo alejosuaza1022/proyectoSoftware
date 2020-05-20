@@ -87,11 +87,28 @@ export default {
             this.$bvModal.hide("modal-1");
         },
         abrir_model_evl() {
-            this.message = "¿está seguro con la evaluación?, recuerde que esta evaluación es definitiva";
-            this.$bvModal.show("modal-1");
+            let p1 = parseFloat(this.correcion.aportes_obras)
+            let p2 = parseFloat(this.correcion.estilo)
+            let p3 = parseFloat(this.correcion.temporalidad)
+            let p4 = parseFloat(this.correcion.organizacion)
+            console.log(p1 < 5.0);
+
+            if (p1 <= 5.0 && p1 >= 0.0 && p2 <= 5.0 && p2 >= 0.0 && p3 <= 5.0 && p3 >= 0.0 && p4 <= 5.0 && p4 >= 0.0) {
+                this.message = "¿está seguro con la evaluación?, recuerde que esta evaluación es definitiva";
+                this.$bvModal.show("modal-1");
+
+            } else {
+                console.log(p1, p2, p3, p4)
+                this.message = "valores erroneos para las notas, recuerde entre 0 a 5";
+                this.model_header_color = "danger";
+                this.model_tbody_color = "danger  ";
+                this.$bvModal.show("modal-2");
+
+            }
+
         },
         abrir_model_retro() {
-            this.message = "recuerde que podra actualizar documento simplemente volviendolo a cargar aquí mismo, acción que no será posible si carga un documento y deja la página"
+            this.message = "recuerde que podra actualizar documento simplemente volviendolo a cargar aquí mismo, acción que no será posible si carga un documento y abandona la página"
             this.$bvModal.show("modal-1");
         },
         crear_evalua() {
@@ -134,7 +151,25 @@ export default {
                 this.model_tbody_color = "dark";
                 this.$bvModal.show("modal-3");
                 localStorage.removeItem("Pub_eval")
-                    // this.agregarInfoLS();
+                let notificación = {
+                    template: "publicacionEvaluada",
+                    nombre: this.$route.query.nombre,
+                    publicacion: this.$route.query.titulo,
+                    to: this.$route.query.correo,
+                    subject: "Evaluación de propuesta",
+                    attachments: "nuevoPdf.pdf"
+                }
+                Axios.post("http://localhost:4000/api/pdf", generarPDF)
+                    .then(res => {
+                        Axios.post("http://localhost:4000/api/mail", notificación)
+                            .then(res => {
+                                console.log(res)
+                            })
+                    }).catch(error => {
+                        console.log("Nos metimos por aca jaja", error)
+                    })
+
+                // this.agregarInfoLS();
             }).catch(error => {
 
                 this.message =
@@ -152,12 +187,12 @@ export default {
             var p4 = parseFloat(this.correcion.temporalidad)
             var p5 = parseFloat(this.correcion.concepto)
             var comentarios = this.correcion.comentarios
-            if(!comentarios){
+            if (!comentarios) {
                 comentarios = "sin comentarios"
             }
             let generarPDF = {
                 template: "formatoEvaluacion",
-                data:{
+                data: {
                     publicacion: this.$route.query.titulo,
                     nota1: p1,
                     nota2: p2,
@@ -168,23 +203,6 @@ export default {
                 }
             }
 
-            let notificación = {
-                template: "publicacionEvaluada",
-                nombre: this.$route.query.nombre,
-                publicacion: this.$route.query.titulo,
-                to: this.$route.query.correo,
-                subject: "Evaluación de propuesta",
-                attachments: "nuevoPdf.pdf"
-            }
-            Axios.post("http://localhost:4000/api/pdf", generarPDF)
-            .then(res =>{
-                Axios.post("http://localhost:4000/api/mail", notificación)
-                .then(res =>{
-                    console.log(res)
-                })
-            }).catch(error => {
-                console.log("Nos metimos por aca jaja", error)
-            })
 
         },
         actualizar_retro() {
@@ -233,7 +251,7 @@ export default {
             }
 
             Axios.post("http://localhost:4000/api/mail", notificación)
-                .then(res =>{
+                .then(res => {
                     console.log(res)
                 })
                 .catch(error => {
@@ -250,12 +268,18 @@ export default {
         ,
         // hacer el calculo del puntaje, con las 4 preguntas ingresadas por el usuario
         puntajeTotal() {
+
             var p1 = parseFloat(this.correcion.organizacion)
             var p2 = parseFloat(this.correcion.estilo)
             var p3 = parseFloat(this.correcion.aportes_obras)
             var p4 = parseFloat(this.correcion.temporalidad)
 
             this.correcion.resultado_final = p1 * 0.25 + p2 * 0.25 + p3 * 0.25 + p4 * 0.25
+
+            this.correcion.concepto = this.correcion.resultado_final >= 3.0 ? 1 : 0;
+            console.log(this.correcion);
+
+
         }
     },
 

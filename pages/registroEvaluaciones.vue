@@ -36,6 +36,7 @@
           </b-button>
          
    </template>
+   
     </b-modal>
 
     <b-modal
@@ -139,20 +140,7 @@
             placeholder="Ingrese temporalidad"
           ></b-form-input>
         </b-form-group>
-        <b-form-group
-          label="concepto"
-          label-for="concepto"
-          description="ingrese valor númerico"
-        >
-          <b-form-input
-            class="form-control"
-            type="number"
-            v-model="correcion.concepto"
-            id="temporalidad"
-            v-bind:required="true"
-            placeholder="Ingrese concepto"
-          ></b-form-input>
-        </b-form-group>
+    
         <b-form-group label="comentarios " label-for="comentarios">
           <b-form-textarea
             class="form-control"
@@ -222,18 +210,7 @@ option:focus {
 .buttonM {
   margin-left: 100px;
 }
-.bcard{margin-top: 30px;
-  background-color: white;
-  border-radius: 30px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: stretch;
-  -webkit-box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
-  -moz-box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
-  box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
-}
+
+
 </style>
 <script src="../assets/registroEvaluaciones.js" />

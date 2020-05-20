@@ -1,5 +1,20 @@
 <template>
-  <div class="login">
+  <div >
+      <b-modal
+      id="modal-1"
+      :header-bg-variant="model_header_color"
+      :body-text-variant="model_tbody_color"
+      header-class="text-center"
+      body-class="text-center"
+      title="Udem dice"
+      ok-only
+    >
+      <h4>
+        {{message}}
+      </h4>
+    </b-modal>
+    <b-container >
+      <b-card class="bcard margin2">
     <b-form @submit="login">
       <b-form-group
         id="input-group-1"
@@ -24,8 +39,10 @@
           placeholder="ingrese  clave"
         ></b-form-input>
       </b-form-group>
-      <b-button  @click="login()" variant="outline-danger">Log in</b-button>
+      <b-button  @click="login()" block variant="danger">Log in</b-button>
     </b-form>
+      </b-card>
+    </b-container>
   </div>
 </template>
 
@@ -34,13 +51,8 @@
 
 
 <style>
-.login {
-  margin: auto;
-  width: 50%;
-  border: 3px solid red;
-  border-radius: 10px;
-  padding: 10px;
-  margin-top: 100px;
+.margin2{
+  margin-top:100px ;
 }
 
 </style>

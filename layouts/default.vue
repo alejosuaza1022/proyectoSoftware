@@ -99,4 +99,17 @@
     .margin{
   margin-right: 20px;
 }
+.bcard {
+  margin-top: 30px;
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  -webkit-box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
+  -moz-box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
+  box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
+}
 </style>

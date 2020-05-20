@@ -3,17 +3,28 @@ import Axios from "axios";
 export default {
     data() {
         return {
+            message: '',
+            model_header_color: '',
+            model_tbody_color: '',
             autor: {
-                id: null,
-                clave: null
+                id: '',
+                clave: ''
             }
         };
     },
     methods: {
         login() {
+            if (this.autor.id.length === 0 || this.autor.clave.length === 0) {
+                this.model_header_color = "danger";
+                this.model_tbody_color = "danger  ";
+                this.message = 'Clave y usuario obligatorios'
+                this.$bvModal.show("modal-1");
+                return
+            }
             Axios.post("http://localhost:4000/api/autor/login", {
                     id: this.autor.id,
-                    clave: this.autor.clave
+                    clave: this.autor.clave,
+
                 }).then(res => {
 
                     if (res) {
@@ -22,7 +33,13 @@ export default {
                     }
                     this.$router.push({ path: "autorPrincipa", query: { nombre: res.data['nombre'] } });
                 })
-                .catch(err => (console.log("ha ocurrido el error :" + err)));
+                .catch(err => {
+                    this.model_header_color = "danger";
+                    this.model_tbody_color = "danger  ";
+                    this.message = 'Claves y/o usuario erroneos'
+                    this.$bvModal.show("modal-1");
+
+                });
 
 
         },

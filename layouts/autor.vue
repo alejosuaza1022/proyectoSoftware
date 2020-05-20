@@ -25,14 +25,14 @@
         <b-collapse is-nav id="nav_collapse">
           <b-navbar-nav>
                <b-nav-item :to="{ name: 'autorPrincipa' }"
-               class="margin">Principal</b-nav-item
+               class="margin"><b><i>Principal</i></b></b-nav-item
             >
             <b-nav-item :to="{ name: 'publicacionesAutor' }"
-              class="margin" >Ver publicaciones</b-nav-item
+              class="margin" ><b><i>Ver publicaciones</i></b></b-nav-item
             >
           
           </b-navbar-nav>
-        </b-collapse>
+        </b-collapse> 
       </b-navbar>
     </div>
 
@@ -54,11 +54,10 @@ export default {
     loadPage() {
       let url = "http://localhost:4000/api/evaluador/verificar";
       let evaluador = JSON.parse(localStorage.getItem("Autor"));
-      console.log(evaluador);
       if (evaluador === null)  window.location.replace("http://localhost:3000/forbbiden");
       let token = evaluador.token;
       axios
-        .get(url, { headers: { token } })
+        .get(url, { headers: { token,modulo:'autor'} })
         .then(response => {
           console.log(response);
         })
@@ -135,6 +134,19 @@ html {
 }
 .link {
   color: #ed0034;
+}
+.bcard {
+  margin-top: 30px;
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  -webkit-box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
+  -moz-box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
+  box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
 }
 
 .link:hover {
