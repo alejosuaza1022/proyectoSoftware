@@ -1,26 +1,34 @@
 <template>
   <div>
-    <div>
-      <b-navbar toggleable="lg" type="dark" variant="danger">
-        <b-navbar-brand href=".">Gestión de evaluación</b-navbar-brand>
+   <b-navbar toggleable type="light" variant="faded">
+      <b-img
+        src="https://redunete.net/wp-content/uploads/2019/02/logo-blanco-Udem-700x300.jpg"
+        fluid
+        alt="Fluid image"
+        width="200px"
+      ></b-img>
 
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+      <div class="title">
+       Inicio
+      </div>
+      
 
-        <b-collapse id="nav-collapse" is-nav>
+      <b-navbar-toggle target="navbar">
+      </b-navbar-toggle>
+    </b-navbar>
+     <div>
+      <b-navbar toggleable="md" type="dark" variant="danger">
+        <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-          <!-- Right aligned nav items -->
-          <b-navbar-nav class="ml-auto">
-
-            <b-nav-item-dropdown text="Navegación" right>
-              <b-dropdown-item class = "a" href="loginAutor">Autor</b-dropdown-item>
-              <b-dropdown-item  class = "a" href="LoginEvaluador">Evaluador</b-dropdown-item>
-<!--              <b-dropdown-item class = "a"  href="notificacionAutor">notificaciones</b-dropdown-item>
-              <b-dropdown-item class = "a"  href="evalPublicacion">evalPublicaion</b-dropdown-item>
-              <b-dropdown-item class = "a"  href="documentos">Documentos</b-dropdown-item>-->
-
-            </b-nav-item-dropdown>
-
-
+        <b-collapse is-nav id="nav_collapse">
+          <b-navbar-nav>
+               <b-nav-item :to="{ name: 'loginEvaluador' }"
+              class="margin">Soy Evaluador</b-nav-item
+            >
+            <b-nav-item :to="{ name: 'loginAutor' }"
+              class="margin">Soy Autor</b-nav-item
+            >
+          
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
@@ -82,4 +90,13 @@
       
       background: #DC3546;
     }
+    body{
+  
+    background-image: url("../images/background-01.png");
+  background-repeat: no-repeat;
+  background-size: cover; 
+    }
+    .margin{
+  margin-right: 20px;
+}
 </style>

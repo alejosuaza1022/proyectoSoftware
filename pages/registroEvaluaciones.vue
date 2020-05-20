@@ -75,6 +75,7 @@
 
     <b-container v-if="eval">
       <!-- Content here -->
+      <b-card class="bcard">
       <h1>Gestión de correción de propuestas</h1>
       <br />
 
@@ -186,7 +187,7 @@
 
     
       </b-form>
-
+      </b-card>
     </b-container>
     <b-container v-else>
       <h1>Gestión de correción de propuestas</h1>
@@ -235,6 +236,19 @@ option:focus {
 }
 .buttonM {
   margin-left: 100px;
+}
+.bcard{margin-top: 30px;
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
+  -webkit-box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
+  -moz-box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
+  box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
 }
 </style>
 <script src="../assets/registroEvaluaciones.js" />

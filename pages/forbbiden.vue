@@ -1,21 +1,25 @@
 <template>
-  <h1 class="text">FORBIDDEN</h1>
+<b-container>
+           <b-img
+          src="../images/403.jpg"
+          fluid
+          alt="Fluid image"
+        ></b-img>
+        <div class="text">Lo sentimos, usted no tiene permisos para acceder a este módulo</div>
+
+</b-container>
 </template>
+<style scoped>
 
-<script>
-export default {
-
+.text {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch;
+    color: #ED0034;
+    font-size: 25px;
 }
-</script>
-<style>
-.text{
-  margin: auto;
-  width: 50%;
-  border: 3px solid red;
-  border-radius: 10px;
-  padding: 10px;
-  margin-top: 100px;
 
-
-}
 </style>

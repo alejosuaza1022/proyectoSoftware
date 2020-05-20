@@ -133,10 +133,10 @@ export default {
                 this.model_header_color = "success";
                 this.model_tbody_color = "dark";
                 this.$bvModal.show("modal-3");
-
-                // this.agregarInfoLS();
+                localStorage.removeItem("Pub_eval")
+                    // this.agregarInfoLS();
             }).catch(error => {
-                console.log(error)
+
                 this.message =
                     " se ha producido un error, por favor intente más tarde";
                 this.model_header_color = "danger";
@@ -212,14 +212,15 @@ export default {
                 this.model_header_color = "success";
                 this.model_tbody_color = "dark";
                 this.$bvModal.show("modal-3");
-                console.log(res.data)
+
+                localStorage.removeItem("Pub_eval")
             }).catch(error => {
                 this.message =
                     " se ha producido un error, por favor intente más tarde";
                 this.model_header_color = "danger";
                 this.model_tbody_color = "danger  ";
                 this.$bvModal.show("modal-2");
-                console.log(error)
+
 
             })
 

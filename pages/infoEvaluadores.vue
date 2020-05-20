@@ -34,7 +34,7 @@
       title="¡ADVERTENCIA!"
     >
       <h4>
-        ¿Desea registrarse con estos datos?, 
+        ¿Desea registrarse con estos datos? 
              </h4>
 
       <p class="my-4"></p>
@@ -59,7 +59,10 @@
         </div>
       </template>
     </b-modal>
+
+
     <b-container>
+       <b-card class="bcard">
       <!-- Content here -->
 
       <h1>Formulario de evaluadores</h1>
@@ -151,6 +154,7 @@
           <b-button size="sm" @click="eliminarEstudiante(row)" class="mr-2 acciones" >Eliminar</b-button>
         </template>
       </b-table> -->
+       </b-card>
     </b-container>
   </div>
 </template>

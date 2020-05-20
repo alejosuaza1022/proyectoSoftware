@@ -13,11 +13,15 @@ export default {
     },
     methods:{
         assignar(){
-            this.nombre = this.$route.query.nombre
+             this.nombre =JSON.parse(localStorage.getItem("Evaluador")).nombre 
         }
 
     },
+    beforeMount(){
+   localStorage.removeItem("Pub_eval")
+    },
     mounted(){
+     
         this.assignar();
     }
     

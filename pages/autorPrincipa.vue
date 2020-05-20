@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     assignar() {
-      this.nombre = this.$route.query.nombre;
+      this.nombre =JSON.parse(localStorage.getItem("Autor")).nombre  
     },
     vmodal() {
       this.$bvModal.show("modal-1");

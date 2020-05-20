@@ -7,7 +7,7 @@
           variant="outline-danger"
           size="sm"
           @click="asignar_propuesta(row)"
-          class="mr-2 acciones"
+          class="mr-2 acciones "
           >Elegir evaluacion</b-button
         >
       </template>
