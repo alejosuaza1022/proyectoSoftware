@@ -36,7 +36,7 @@
           v-model="autor.clave"
           required
           type="password"
-          placeholder="ingrese  clave"
+          placeholder="Ingrese  clave"
         ></b-form-input>
       </b-form-group>
       <b-button  @click="login()" block variant="danger">Log in</b-button>

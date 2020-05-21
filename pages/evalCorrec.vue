@@ -1,6 +1,6 @@
 <template>
   <b-container class="container">
-    <h1>Revision correciones</h1>
+    <h1>Revisión correciones</h1>
     <b-table striped hover :items="lista_propuestas">
       <template v-slot:cell(acciones)="row">
         <b-button

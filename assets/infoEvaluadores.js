@@ -1,6 +1,7 @@
 import Axios from "axios";
 
 export default {
+    layout:"evaluador",
     data() {
         return {
             aux: null,

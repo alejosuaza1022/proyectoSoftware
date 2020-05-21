@@ -82,9 +82,9 @@
 
       <b-form action="javascript:void(0)" @submit="abrir_model_evl">
         <b-form-group
-          label="organización de contenido"
+          label="Organización de contenido"
           label-for="organizacion_contenido"
-          description="ingrese valor númerico"
+          description="Ingrese valor númerico"
         >
           <b-form-input
             class="form-control"
@@ -95,14 +95,14 @@
             v-bind:required="true"
             v-model="correcion.organizacion"
             id="organizacion_contenido"
-            placeholder="ingrese organizacion contenido"
+            placeholder="Ingrese organizacion contenido"
           />
         </b-form-group>
 
         <b-form-group
-          label="estilo"
-          label-for="estilo"
-          description="ingrese valor númerico"
+          label="Estilo"
+          label-for="Estilo"
+          description="Ingrese valor númerico"
         >
           <b-form-input
             class="form-control"
@@ -118,9 +118,9 @@
         </b-form-group>
 
         <b-form-group
-          label="aportes de obra"
-          label-for="aportes_de_obra"
-          description="ingrese valor númerico"
+          label="Aportes de obra"
+          label-for="Aportes_de_obra"
+          description="Ingrese valor númerico"
         >
           <b-form-input
             class="form-control"
@@ -136,9 +136,9 @@
         </b-form-group>
 
         <b-form-group
-          label="temporalidad"
-          label-for="temporalidad"
-          description="ingrese valor númerico"
+          label="Temporalidad"
+          label-for="Temporalidad"
+          description="Ingrese valor númerico"
         >
           <b-form-input
             class="form-control"
@@ -153,7 +153,7 @@
           ></b-form-input>
         </b-form-group>
     
-        <b-form-group label="comentarios " label-for="comentarios">
+        <b-form-group label="Comentarios " label-for="Comentarios">
           <b-form-textarea
             class="form-control"
             type="textbox"
@@ -167,7 +167,7 @@
           type="submit"
           variant="danger"
           class="submit-button"
-          >Evaluar correcion</b-button
+          >Evaluar correción</b-button
         >
 
     
@@ -187,7 +187,7 @@
             class="mb-2 card-pdf"
           >
             <b-card-text>
-              por favor adjunte su pdf correción aquí
+              Por favor adjunte su pdf correción aquí
             </b-card-text>
 
             <b-form-file

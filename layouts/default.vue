@@ -13,15 +13,10 @@
       </div>
       
 
-      <b-navbar-toggle target="navbar">
-      </b-navbar-toggle>
     </b-navbar>
      <div>
       <b-navbar toggleable="md" type="dark" variant="danger">
-        <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-
-        <b-collapse is-nav id="nav_collapse">
-          <b-navbar-nav>
+        <b-navbar-nav>
                <b-nav-item :to="{ name: 'loginEvaluador' }"
               class="margin">Soy Evaluador</b-nav-item
             >
@@ -30,7 +25,6 @@
             >
           
           </b-navbar-nav>
-        </b-collapse>
       </b-navbar>
     </div>
 

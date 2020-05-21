@@ -14,7 +14,7 @@
 
       <b-navbar-toggle target="navbar-toggle-collapse">
         <a href="/" class="link">
-          Cerrar Sesion
+          <b-icon icon="house-fill"></b-icon>Cerrar Sesion
         </a>
       </b-navbar-toggle>
     </b-navbar>
@@ -41,8 +41,13 @@
 
 <script>
 import Axios from "axios";
+import {BIcon, BIconHouseFill } from 'bootstrap-vue'
 const axios = require("axios");
 export default {
+  components: {
+    BIcon,
+    BIconHouseFill
+  },
   beforeMount() {
     let token = localStorage.getItem("token");
     let id = localStorage.getItem("id");

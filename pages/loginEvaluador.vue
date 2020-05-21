@@ -26,7 +26,7 @@
               v-model="evaluador.idevaluador"
               type="text"
               required
-              placeholder="ingrese id"
+              placeholder="Ingrese id"
             ></b-form-input>
           </b-form-group>
 
@@ -34,14 +34,14 @@
             id="input-group-2"
             label="Clave"
             label-for="input-2"
-            description="esta información es privada"
+            description="Esta información es privada"
           >
             <b-form-input
               id="input-2"
               type="password"
               v-model="evaluador.clave"
               required
-              placeholder="ingrese  clave"
+              placeholder="Ingrese  clave"
             ></b-form-input>
           </b-form-group>
           
@@ -51,7 +51,7 @@
           >
 
           <b-button href="infoEvaluadores?actu=0" block variant="outline-danger"
-            >Regitrarme </b-button
+            >Registrarme </b-button
           >
       </b-card>
       

@@ -24,7 +24,7 @@
         </b-button>
       </template>
     </b-modal>
-    <h1>Estado de la publicacion</h1>
+    <h1>Estado de la publicación</h1>
     <b-table
       class="border border-danger text-center"
       responsive
@@ -57,7 +57,7 @@
         </div>
       </template>
     </b-table>
-    <h2 v-if="sin_revisar">sea paciente con su revision</h2>
+    <h2 v-if="sin_revisar">Sea paciente con su revisión</h2>
   </b-container>
 </template>
 <style>
