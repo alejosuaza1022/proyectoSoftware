@@ -41,6 +41,7 @@
 
 <script>
 import Axios from "axios";
+import config from "../assets/config"
 import {BIcon, BIconHouseFill } from 'bootstrap-vue'
 const axios = require("axios");
 export default {
@@ -61,7 +62,7 @@ export default {
   },
   methods: {
     loadPage() {
-      let url = "http://localhost:4000/api/evaluador/verificar";
+      let url = config.url_api+"/evaluador/verificar";
       let evaluador = JSON.parse(localStorage.getItem("Autor"));
 
       if (evaluador === null)
@@ -79,7 +80,7 @@ export default {
     },
     loadPage2(token) {
       console.log(token);
-      let url = "http://localhost:4000/api/autor/verificar";
+     let url = config.url_api+"/evaluador/verificar";
       axios
         .get(url, { headers: { token } })
         .then(res => {

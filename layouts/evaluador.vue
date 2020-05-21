@@ -47,7 +47,7 @@
 
 <script>
 import Axios from "axios";
-import {BIcon, BIconHouseFill } from 'bootstrap-vue'
+import { BIcon, BIconHouseFill } from "bootstrap-vue";
 const axios = require("axios");
 export default {
   components: {
@@ -70,7 +70,7 @@ export default {
       this.$router.push("infoEvaluadores?actu=1");
     },
     loadPage() {
-      let url = "http://localhost:4000/api/evaluador/verificar";
+      let url = config.url_api + "/evaluador/verificar";
       let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
       if (!evaluador)
         window.location.replace("http://localhost:3000/forbbiden");
@@ -86,7 +86,7 @@ export default {
     },
     loadPage2(token) {
       console.log(token);
-      let url = "http://localhost:4000/api/autor/verificar";
+      let url = config.url_api + "/evaluador/verificar";
       axios
         .get(url, { headers: { token } })
         .then(res => {

@@ -5,6 +5,7 @@
       :header-bg-variant="model_header_color"
       :body-text-variant="model_tbody_color"
       header-class="text-center"
+      :footer-bg-variant="danger"
       body-class="text-center"
       title="Udem dice"
       ok-only
@@ -85,13 +86,14 @@
           label="Organización de contenido"
           label-for="organizacion_contenido"
           description="Ingrese valor númerico"
+          class="text-left"
         >
           <b-form-input
             class="form-control"
             type="number"
             step="0.1"
             min="0"
-            max="10"
+            max="5"
             v-bind:required="true"
             v-model="correcion.organizacion"
             id="organizacion_contenido"
@@ -103,13 +105,14 @@
           label="Estilo"
           label-for="Estilo"
           description="Ingrese valor númerico"
+             class="text-left"
         >
           <b-form-input
             class="form-control"
             type="number"
             step="0.1"
             min="0"
-            max="10"
+            max="5"
             v-model="correcion.estilo"
             id="estilo"
             v-bind:required="true"
@@ -121,13 +124,14 @@
           label="Aportes de obra"
           label-for="Aportes_de_obra"
           description="Ingrese valor númerico"
+             class="text-left"
         >
           <b-form-input
             class="form-control"
             type="number"
             step="0.1"
             min="0"
-            max="10"
+            max="5"
             v-bind:required="true"
             v-model="correcion.aportes_obras"
             id="aportes_de_obra"
@@ -139,6 +143,7 @@
           label="Temporalidad"
           label-for="Temporalidad"
           description="Ingrese valor númerico"
+             class="text-left"
         >
           <b-form-input
             class="form-control"
@@ -147,13 +152,13 @@
             id="temporalidad"
             step="0.1"
             min="0"
-            max="10"
+            max="5"
             v-bind:required="true"
             placeholder="Ingrese temporalidad"
           ></b-form-input>
         </b-form-group>
     
-        <b-form-group label="Comentarios " label-for="Comentarios">
+        <b-form-group label="Comentarios " label-for="Comentarios"    class="text-left">
           <b-form-textarea
             class="form-control"
             type="textbox"

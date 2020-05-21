@@ -185,7 +185,7 @@ export default {
             var p2 = parseFloat(this.correcion.estilo)
             var p3 = parseFloat(this.correcion.aportes_obras)
             var p4 = parseFloat(this.correcion.temporalidad)
-            var p5 = parseFloat(this.correcion.concepto)
+            var p5 = p1 * 0.25 + p2 * 0.25 + p3 * 0.25 + p4 * 0.25
             var comentarios = this.correcion.comentarios
             if (!comentarios) {
                 comentarios = "sin comentarios"
@@ -225,18 +225,28 @@ export default {
                     token
                 }
             }).then(res => {
-                this.retroalimentacion = null
-                this.message = " retroalimentación agregada con exito ";
-                this.model_header_color = "success";
-                this.model_tbody_color = "dark";
-                this.$bvModal.show("modal-3");
+                Axios.post(config.url_api + "/mail", notificación)
+                    .then(res => {
+                        console.log(res)
+                        this.retroalimentacion = null
+                        this.message = " retroalimentación agregada con exito ";
+                        this.model_header_color = "success";
+                        this.model_tbody_color = "dark";
+                        this.$bvModal.show("modal-3");
+                        localStorage.removeItem("Pub_eval")
 
-                localStorage.removeItem("Pub_eval")
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+
+
+
             }).catch(error => {
                 this.message =
                     " se ha producido un error, por favor intente más tarde";
                 this.model_header_color = "danger";
-                this.model_tbody_color = "danger  ";
+                this.model_tbody_color = "danger";
                 this.$bvModal.show("modal-2");
 
 
@@ -250,13 +260,6 @@ export default {
                 subject: "Retroalimentación de propuesta",
             }
 
-            Axios.post(config.url_api + "/mail", notificación)
-                .then(res => {
-                    console.log(res)
-                })
-                .catch(error => {
-                    console.log(error)
-                })
 
         },
 

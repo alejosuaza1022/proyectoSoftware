@@ -22,6 +22,7 @@ export default {
                 this.$bvModal.show("modal-1");
                 return
             }
+
             Axios.post(config.url_api + "/autor/login", {
                     id: this.autor.id,
                     clave: this.autor.clave,
