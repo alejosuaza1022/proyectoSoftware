@@ -1,9 +1,9 @@
 <template>
   <div class="content">
-    <div class="container">
+    <b-container>
         <h1 class="title1">Gestión de evaluación</h1>
         <h2 class="subtitle">Plataforma para todo lo referente a la evaluación de nuevas propuestas de publicación</h2>
-    </div>
+    </b-container>
   </div>
 </template>
 
