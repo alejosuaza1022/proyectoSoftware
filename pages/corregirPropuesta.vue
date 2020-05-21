@@ -32,7 +32,7 @@
       title="¡ADVERTENCIA!"
     >
       <h4>
-        ¿seguro que desea cargar este documento?, recuerde que si desea
+        ¿Seguro que desea cargar este documento?, Recuerde que si desea
         cambiarlo, deberá hablar con el administrador
       </h4>
 
@@ -68,7 +68,7 @@
         class="mb-2 card-pdf"
       >
         <b-card-text>
-          por favor adjunte su pdf correción aquí
+          Por favor adjunte su pdf correción aquí
         </b-card-text>
 
         <b-form-file
@@ -156,7 +156,7 @@ export default {
       Axios.post(url, formData)
         .then(respuesta => {
           this.retroalimentacion = null;
-          this.message = " retroalimentación agregada con exito ";
+          this.message = " Retroalimentación agregada con exito ";
           this.model_header_color = "success";
           this.model_tbody_color = "dark";
           this.$bvModal.show("modal-2");
@@ -165,7 +165,7 @@ export default {
         .catch(error => {
           console.log(error)
           this.message =
-            " se ha producido un error, por favor intente más tarde, por favor revise la fecha limite " ;
+            " Se ha producido un error, por favor intente más tarde. Revise la fecha limite " ;
           this.model_header_color = "danger";
           this.model_tbody_color = "danger  ";
           this.$bvModal.show("modal-2");

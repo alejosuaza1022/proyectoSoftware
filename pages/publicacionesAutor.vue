@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-container class="container">
-      <h1>Publicaciones aceptadas por el comite</h1>
+      <h1>Publicaciones aceptadas por el comité</h1>
       <b-table class="border border-dark text-center" responsive hover  head-variant="dark" :fields="fields" :items="lista_propuestas">
         <template v-slot:cell(acciones)="row">
           <div>

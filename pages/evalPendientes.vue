@@ -1,6 +1,6 @@
 <template>
   <b-container class="container">
-    <h1>Evaluaciones Pendientes</h1>
+    <h1>Evaluaciones pendientes</h1>
     <b-table
       class="border border-dark text-center"
       responsive

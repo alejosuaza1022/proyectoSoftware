@@ -20,7 +20,7 @@
               size="sm"
               @click="abrir_model(row)"
               class="mr-2 acciones"
-              >Elegir evaluacion</b-button
+              >Elegir evaluación</b-button
             >
           </template>
         </b-table>
@@ -49,7 +49,7 @@
       title="¡ADVERTENCIA!"
     >
       <h4>
-        ¿está seguro que desea continuar?, recuerde que una vez elegida una
+        ¿Está seguro que desea continuar?, recuerde que una vez elegida una
         publicación, deberá hablar con los administradores para poder hacer el
         respectivo cambio
       </h4>
@@ -104,8 +104,8 @@ export default {
           key: "titulo",
           label: "Título"
         },
-        "area",
-        "facultad",
+        "Area",
+        "Facultad",
         {
           key: "tipo_publicacion",
           label: "Tipo publicación"
@@ -141,7 +141,7 @@ export default {
           headers: { token }
         })
           .then(res => {
-            this.message = " publicación asignada correctamente ";
+            this.message = " Publicación asignada correctamente ";
             this.$bvModal.show("modal-2");
             this.model_header_color = "success";
             this.model_tbody_color = "dark";
@@ -149,7 +149,7 @@ export default {
           })
           .catch(error => {
             this.message =
-              " se ha producido un error, por favor intente más tarde";
+              " Se ha producido un error, por favor intente más tarde";
             this.model_header_color = "danger";
             this.model_tbody_color = "danger  ";
             this.$bvModal.show("modal-2");

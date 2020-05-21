@@ -34,7 +34,7 @@
 
         >
           <b-card-text class="text-center">
-            <b>Primera Formato</b>
+            <b>Primer formato</b>
           </b-card-text>
         </b-card>
         <b-card
@@ -49,7 +49,7 @@
           v-b-hover="callback"
         >
           <b-card-text class="text-center">
-            <b> Segundo Formato</b>
+            <b> Segundo formato</b>
           </b-card-text>
         </b-card>
         <!-- <b-card-img  @click="app" style="max-width: 10rem;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/1200px-PDF_file_icon.svg.png"  >

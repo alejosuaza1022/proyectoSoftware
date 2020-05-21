@@ -10,7 +10,7 @@
               placeholder="Ingrese el id propuesta"
             />
           </b-form-group>
-      <b-button @click="mostrarData()"  variant="danger"  >ver evaluación propuestas</b-button>
+      <b-button @click="mostrarData()"  variant="danger"  >Ver evaluación propuestas</b-button>
        <b-table striped hover :items="lista_propuestasEval">
       </b-table>
 </b-container>

@@ -46,8 +46,13 @@
 
 <script>
 import Axios from "axios";
+import {BIcon, BIconHouseFill } from 'bootstrap-vue'
 const axios = require("axios");
 export default {
+  components: {
+    BIcon,
+    BIconHouseFill
+  },
   beforeMount() {
     this.loadPage();
   },
