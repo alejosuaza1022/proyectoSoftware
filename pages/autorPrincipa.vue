@@ -1,4 +1,5 @@
 <template>
+<b-container fluid>
   <div>
     <h1 class="text-center"> <b> <i> Bienvenido {{nombre}}</i></b></h1>
 
@@ -28,6 +29,7 @@
       <b-card-img  @click="app" style="max-width: 10rem;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/1200px-PDF_file_icon.svg.png"  ></b-card-img>-->
     </b-card>
   </div>
+  </b-container>
 </template>
 
 <script>

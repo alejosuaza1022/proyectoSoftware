@@ -44,6 +44,8 @@ import Axios from "axios";
 import config from "../assets/config"
 import {BIcon, BIconHouseFill } from 'bootstrap-vue'
 const axios = require("axios");
+const url = "https://evaluacionudem-frontend.herokuapp.com"
+
 export default {
   components: {
     BIcon,
@@ -62,31 +64,30 @@ export default {
   },
   methods: {
     loadPage() {
-      let url = config.url_api+"/evaluador/verificar";
+      let url1 = config.url_api+"/evaluador/verificar";
       let evaluador = JSON.parse(localStorage.getItem("Autor"));
 
       if (evaluador === null)
-        window.location.replace("http://localhost:3000/forbbiden");
+        window.location.replace(url+"/forbbiden");
       let token = evaluador.token;
       axios
-        .get(url, { headers: { token, modulo: "autor" } })
+        .get(url1, { headers: { token, modulo: "autor" } })
         .then(response => {
           console.log(response);
         })
         .catch(error => {
-          window.location.replace("http://localhost:3000/forbbiden");
-          this.$router.push("../pages/forbidden");
+          window.location.replace(url+"/forbbiden");
         });
     },
     loadPage2(token) {
       console.log(token);
      let url = config.url_api+"/evaluador/verificar";
       axios
-        .get(url, { headers: { token } })
+        .get(url1, { headers: { token } })
         .then(res => {
           console.log(res);
           if (res.data.info.rol !== 6)
-             window.location.replace("http://localhost:3000/forbbiden");
+             window.location.replace(url+"/forbbiden");
             //   localStorage.clear()
             this.agregarInfoLS({
               idautor: res.data.info.id,
@@ -96,7 +97,7 @@ export default {
        
         })
         .catch(err => {
-          window.location.replace("http://localhost:3000/forbbiden");
+          window.location.replace(url+"/forbbiden");
         });
     },
     agregarInfoLS(item) {

@@ -179,7 +179,7 @@
       </b-form>
       </b-card>
     </b-container>
-    <b-container v-else>
+    <b-container fluid v-else>
       <h1>Gestión de correción de propuestas</h1>
       <div>
         <div>

@@ -1,4 +1,5 @@
 <template>
+<b-container fluid>
   <div>
     <h1 class="text-center">
       <b>
@@ -63,6 +64,7 @@
       </b-card-group>
     </b-card>
   </div>
+</b-container>
 </template>
 
 <script>
@@ -113,6 +115,8 @@ export default {
 </script>
 
 <style>
+
+
 .size {
   font-size: 30px;
 }
@@ -122,7 +126,7 @@ export default {
   font-size: 10px;
 }
 .margen2 {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 .transparencia {
   border-color: transparent !important;

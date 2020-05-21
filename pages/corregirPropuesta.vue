@@ -125,7 +125,7 @@ export default {
   },
   mounted() {
     let idEval = this.$route.query.id_e
-    let url = `http://localhost:4000/api/evaluador/${idEval}`
+    let url = `${config.url_api}/evaluador/${idEval}`
     let autor = JSON.parse(localStorage.getItem("Autor"))
     let token = autor.token
     Axios.get(url, {headers: {token}})
@@ -139,7 +139,7 @@ export default {
   },
   methods: {
     actualizar_correcion() {
-      let url = "http://localhost:4000/api/publicacion_rev/";
+      let url = config.url_api+"/publicacion_rev/";
       let data = this.archivo;
       let formData = new FormData();
       formData.append("archivo", data);
@@ -181,7 +181,7 @@ export default {
                 nombre: this.eval_nombre,
                 subject: "Corrección de una propuesta"
             }
-        Axios.post("http://localhost:4000/api/mail", notificación)
+        Axios.post(config.url_api+ "/mail", notificación)
             .then(res =>{
                 console.log(res)
             })
