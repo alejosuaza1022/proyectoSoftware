@@ -47,11 +47,11 @@
 
 <script>
 import Axios from "axios";
-import config from "../assets/config"
+import config from "../assets/config";
 
 import { BIcon, BIconHouseFill } from "bootstrap-vue";
 const axios = require("axios");
-const url = "https://evaluacionudem-frontend.herokuapp.com"
+const url = "https://evaluacionudem-frontend.herokuapp.com";
 export default {
   components: {
     BIcon,
@@ -60,10 +60,8 @@ export default {
   beforeMount() {
     let token = localStorage.getItem("token");
     let id = localStorage.getItem("id");
-    if (token && id) {
-      this.loadPage2(token);
-      console.log("lkajsdkljs");
-    } else this.loadPage();
+    if (token && id) this.loadPage2(token);
+    else this.loadPage();
   },
   data() {
     return {};
@@ -73,19 +71,20 @@ export default {
       this.$router.push("infoEvaluadores?actu=1");
     },
     loadPage() {
-      let url1 = config.url_api + "/evaluador/verificar";
-      let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
-      if (!evaluador)
-        window.location.replace(url+"/forbbiden");
-      let token = evaluador.token;
-      axios
-        .get(url1, { headers: { token, modulo: "evaluador" } })
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          window.location.replace(url+"/forbbiden/");
-        });
+      if (!window.location.pathname.includes("/infoEvaluadores")) {
+        let url1 = config.url_api + "/evaluador/verificar";
+        let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
+        if (!evaluador) window.location.replace(url + "/forbbiden");
+        let token = evaluador.token;
+        axios
+          .get(url1, { headers: { token, modulo: "evaluador" } })
+          .then(response => {
+            console.log(response);
+          })
+          .catch(error => {
+            window.location.replace(url + "/forbbiden");
+          });
+      }
     },
     loadPage2(token) {
       console.log(token);
@@ -95,16 +94,16 @@ export default {
         .then(res => {
           console.log(res);
           if (res.data.info.rol !== 2)
-            window.location.replace(url+"/forbbiden");
-          //   localStorage.clear()
-          this.agregarInfoLS({
-            idevaluador: res.data.info.id,
-            token: token,
-            nombre: res.data.info.nombre
-          });
+            //   window.location.replace(url+"/forbbiden");
+            //   localStorage.clear()
+            this.agregarInfoLS({
+              idevaluador: res.data.info.id,
+              token: token,
+              nombre: res.data.info.nombre
+            });
         })
         .catch(err => {
-          window.location.replace(url+"/forbbiden");
+          //     window.location.replace(url+"/forbbiden");
         });
     },
     agregarInfoLS(item) {

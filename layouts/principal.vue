@@ -1,20 +1,17 @@
 <template>
   <div>
-   <b-navbar toggleable type="light" variant="faded">
+  <b-navbar toggleable type="light" variant="faded" >
       <b-img
+      center
         src="https://redunete.net/wp-content/uploads/2019/02/logo-blanco-Udem-700x300.jpg"
         fluid
-        alt="Fluid image"
+        alt="Center image"
         width="200px"
+        
       ></b-img>
 
-      <div class="title">
-       Inicio
-      </div>
-      
 
-      <b-navbar-toggle target="navbar">
-      </b-navbar-toggle>
+
     </b-navbar>
      <div>
       <b-navbar toggleable="md" type="dark" variant="danger">
