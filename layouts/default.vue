@@ -8,7 +8,7 @@
         width="200px"
       ></b-img>
 
-      <div class="title">
+      <div class="title text-center">
        Inicio
       </div>
          <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
