@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-center"> <b> <i> Bienvenido : {{ nombre }}</i></b></h1>
+    <h1 class="text-center"> <b> <i> Bienvenido {{nombre}}</i></b></h1>
 
     <b-card
       img-src="../images/Upload-pana.png"
@@ -40,7 +40,8 @@ export default {
   },
   methods: {
     assignar() {
-      this.nombre = JSON.parse(localStorage.getItem("Autor")).nombre;
+    if(JSON.parse(localStorage.getItem("Autor")))
+       this.nombre = ":" + JSON.parse(localStorage.getItem("Autor")).nombre;
     },
     vmodal() {
       this.$bvModal.show("modal-1");

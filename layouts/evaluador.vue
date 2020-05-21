@@ -23,17 +23,18 @@
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
         <b-collapse is-nav id="nav_collapse">
-          <b-navbar-nav >
-            <b-nav-item :to="{ name: 'evaluadorPrincipal' }" class="margin"><b><i>Principal</i></b></b-nav-item>
-            <b-nav-item :to="{ name: 'revisionesNuevas' } "
-             class="margin" ><b><i>Publicaciones Nuevas</i></b></b-nav-item
+          <b-navbar-nav>
+            <b-nav-item :to="{ name: 'evaluadorPrincipal' }" class="margin"
+              ><b><i>Principal</i></b></b-nav-item
             >
-             <b-nav-item :to="{ name: 'evalPendientes' }"
-             class="margin" ><b><i>Evaluaciones En Proceso</i></b></b-nav-item
+            <b-nav-item :to="{ name: 'revisionesNuevas' }" class="margin"
+              ><b><i>Publicaciones Nuevas</i></b></b-nav-item
             >
-             <b-nav-item 
-             @click="actualizar"
-              class="margin"><b><i>Actualizar informacion</i></b></b-nav-item
+            <b-nav-item :to="{ name: 'evalPendientes' }" class="margin"
+              ><b><i>Evaluaciones En Proceso</i></b></b-nav-item
+            >
+            <b-nav-item @click="actualizar" class="margin"
+              ><b><i>Actualizar informacion</i></b></b-nav-item
             >
           </b-navbar-nav>
         </b-collapse>
@@ -49,28 +50,59 @@ import Axios from "axios";
 const axios = require("axios");
 export default {
   beforeMount() {
-    this.loadPage();
+    let token = localStorage.getItem("token");
+    let id = localStorage.getItem("id");
+    if (token && id) {
+      this.loadPage2(token);
+      console.log("lkajsdkljs");
+    } else this.loadPage();
   },
   data() {
     return {};
   },
   methods: {
-    actualizar(){
-        this.$router.push("infoEvaluadores?actu=1");
+    actualizar() {
+      this.$router.push("infoEvaluadores?actu=1");
     },
     loadPage() {
       let url = "http://localhost:4000/api/evaluador/verificar";
       let evaluador = JSON.parse(localStorage.getItem("Evaluador"));
-      if (!evaluador)  window.location.replace("http://localhost:3000/forbbiden");
+      if (!evaluador)
+        window.location.replace("http://localhost:3000/forbbiden");
       let token = evaluador.token;
       axios
-        .get(url, { headers: { token,modulo:'evaluador'} })
+        .get(url, { headers: { token, modulo: "evaluador" } })
         .then(response => {
           console.log(response);
         })
         .catch(error => {
           window.location.replace("http://localhost:3000/forbbiden/");
         });
+    },
+    loadPage2(token) {
+      console.log(token);
+      let url = "http://localhost:4000/api/autor/verificar";
+      axios
+        .get(url, { headers: { token } })
+        .then(res => {
+          console.log(res);
+          if (res.data.info.rol !== 2)
+            window.location.replace("http://localhost:3000/forbbiden");
+          //   localStorage.clear()
+          this.agregarInfoLS({
+            idevaluador: res.data.info.id,
+            token: token,
+            nombre: res.data.info.nombre
+          });
+        })
+        .catch(err => {
+          window.location.replace("http://localhost:3000/forbbiden");
+        });
+    },
+    agregarInfoLS(item) {
+      localStorage.setItem("Evaluador", JSON.stringify(item));
+
+      return true;
     }
   }
 };
@@ -144,7 +176,7 @@ body {
   -moz-box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
   box-shadow: -7px 7px 26px 0px rgba(150, 150, 150, 1);
 }
-.margin{
+.margin {
   margin-right: 20px;
 }
 </style>

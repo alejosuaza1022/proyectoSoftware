@@ -24,15 +24,14 @@
 
         <b-collapse is-nav id="nav_collapse">
           <b-navbar-nav>
-               <b-nav-item :to="{ name: 'autorPrincipa' }"
-               class="margin"><b><i>Principal</i></b></b-nav-item
+            <b-nav-item :to="{ name: 'autorPrincipa' }" class="margin"
+              ><b><i>Principal</i></b></b-nav-item
             >
-            <b-nav-item :to="{ name: 'publicacionesAutor' }"
-              class="margin" ><b><i>Ver publicaciones</i></b></b-nav-item
+            <b-nav-item :to="{ name: 'publicacionesAutor' }" class="margin"
+              ><b><i>Ver publicaciones</i></b></b-nav-item
             >
-          
           </b-navbar-nav>
-        </b-collapse> 
+        </b-collapse>
       </b-navbar>
     </div>
 
@@ -45,7 +44,12 @@ import Axios from "axios";
 const axios = require("axios");
 export default {
   beforeMount() {
-    this.loadPage();
+    let token = localStorage.getItem("token");
+    let id = localStorage.getItem("id");
+    if (token && id) {
+      this.loadPage2(token);
+      console.log("lkajsdkljs");
+    } else this.loadPage();
   },
   data() {
     return {};
@@ -54,17 +58,46 @@ export default {
     loadPage() {
       let url = "http://localhost:4000/api/evaluador/verificar";
       let evaluador = JSON.parse(localStorage.getItem("Autor"));
-      if (evaluador === null)  window.location.replace("http://localhost:3000/forbbiden");
+
+      if (evaluador === null)
+        window.location.replace("http://localhost:3000/forbbiden");
       let token = evaluador.token;
       axios
-        .get(url, { headers: { token,modulo:'autor'} })
+        .get(url, { headers: { token, modulo: "autor" } })
         .then(response => {
           console.log(response);
         })
         .catch(error => {
           window.location.replace("http://localhost:3000/forbbiden");
-          // this.$router.push("../pages/forbidden");
+          this.$router.push("../pages/forbidden");
         });
+    },
+    loadPage2(token) {
+      console.log(token);
+      let url = "http://localhost:4000/api/autor/verificar";
+      axios
+        .get(url, { headers: { token } })
+        .then(res => {
+          console.log(res);
+          if (res.data.info.rol !== 6)
+             window.location.replace("http://localhost:3000/forbbiden");
+            //   localStorage.clear()
+            this.agregarInfoLS({
+              idautor: res.data.info.id,
+              token: token,
+              nombre: res.data.info.nombre
+            });
+       
+        })
+        .catch(err => {
+          window.location.replace("http://localhost:3000/forbbiden");
+        });
+    },
+    agregarInfoLS(item) {
+      localStorage.setItem("Autor", JSON.stringify(item));
+      
+    
+      return true;
     }
   }
 };
@@ -153,7 +186,7 @@ html {
   text-decoration: none;
   color: #ed0034;
 }
-.margin{
+.margin {
   margin-right: 20px;
 }
 </style>

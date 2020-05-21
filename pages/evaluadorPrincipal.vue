@@ -1,6 +1,10 @@
 <template>
   <div>
-    <h1 class="text-center"> <b> <i> Bienvenido : {{ nombre }}</i></b></h1>
+    <h1 class="text-center">
+      <b>
+        <i> Bienvenido {{ nombre }}</i></b
+      >
+    </h1>
     <b-card
       img-src="../images/Search-amico.png"
       img-width="500"
@@ -31,7 +35,6 @@
           class="margen2 transparencia"
           @click="descargar(1)"
           v-b-hover="callback1"
-
         >
           <b-card-text class="text-center">
             <b>Primera Formato</b>
@@ -71,19 +74,20 @@ export default {
       nombre: "",
       bool: true,
       bgcard: "transparent",
-      bgcard2:"transparent",
+      bgcard2: "transparent"
     };
   },
   methods: {
     assignar() {
-      this.nombre = JSON.parse(localStorage.getItem("Evaluador")).nombre;
+      if (JSON.parse(localStorage.getItem("Evaluador"))) {
+        this.nombre = ":" + JSON.parse(localStorage.getItem("Evaluador")).nombre;
+      }
     },
     callback(isHovered) {
-      this.bgcard = isHovered ? "white" : "transparent"
-   
+      this.bgcard = isHovered ? "white" : "transparent";
     },
-      callback1(isHovered) {
-      this.bgcard2 = isHovered ? "white" : "transparent"
+    callback1(isHovered) {
+      this.bgcard2 = isHovered ? "white" : "transparent";
     },
     descargar(numero) {
       var a = document.createElement("a");

@@ -9,6 +9,11 @@
 
 </b-container>
 </template>
+<script>
+export default {
+  layout:"principal"
+}
+</script>
 <style scoped>
 
 .text {
