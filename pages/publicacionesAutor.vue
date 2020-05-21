@@ -22,6 +22,8 @@
 
 <script>
 import Axios from "axios";
+import config from "../assets/config"
+
 export default {
   layout: "autor",
   beforeMount() {
@@ -30,7 +32,7 @@ export default {
   data() {
     return {
       lista_propuestas: null,
-      url: "http://localhost:4000/api/autor/",
+      url: `${config.url_api}/autor/`,
        fields:[
          {
           key:'id_publicacion',

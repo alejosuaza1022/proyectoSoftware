@@ -85,6 +85,7 @@ a:link {
 </style>
 <script>
 import Axios from "axios";
+import config from "../assets/config"
 export default {
   layout: "evaluador",
   beforeMount() {
@@ -98,7 +99,7 @@ export default {
       model_header_color: "",
       model_tbody_color: "",
       message: "",
-      url: "http://localhost:4000/api/evaluador/",
+      url: `${config.url_api}/evaluador/`,
       fields: [
         {
           key: "titulo",
@@ -137,7 +138,7 @@ export default {
         formData.set("idevaluador", ideval),
         formData.set("idpublicacion", item.id_publicacion),
         formData.set("estado", 0),
-        Axios.post("http://localhost:4000/api/publicacion_rev", formData, {
+        Axios.post(config.url_api+"/publicacion_rev", formData, {
           headers: { token }
         })
           .then(res => {

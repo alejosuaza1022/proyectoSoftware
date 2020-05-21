@@ -1,5 +1,5 @@
 const axios = require("axios");
-const url = 'localhost:4000/api/'
+import config from "./config"
 export default {
     beforeMount() {
         localStorage.removeItem('Evaluador')
@@ -29,7 +29,7 @@ export default {
                 return
             }
             console.log(this.evaluador.idevaluador, this.evaluador.clave)
-            axios.post("http://localhost:4000/api/evaluador/login", {
+            axios.post(config.url_api + "/evaluador/login", {
                     id: this.evaluador.idevaluador,
                     clave: this.evaluador.clave,
                 }).then(res => {

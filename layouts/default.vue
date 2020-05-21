@@ -11,6 +11,13 @@
       <div class="title">
        Inicio
       </div>
+         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+
+        <b-collapse is-nav id="nav_collapse">
+          <b-navbar-nav>
+          </b-navbar-nav>
+        </b-collapse>
+        
       
 
     </b-navbar>

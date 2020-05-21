@@ -1,5 +1,5 @@
 import Axios from "axios";
-
+import config from "./config"
 export default {
     data() {
         return {
@@ -14,6 +14,7 @@ export default {
     },
     methods: {
         login() {
+
             if (this.autor.id.length === 0 || this.autor.clave.length === 0) {
                 this.model_header_color = "danger";
                 this.model_tbody_color = "danger  ";
@@ -21,7 +22,7 @@ export default {
                 this.$bvModal.show("modal-1");
                 return
             }
-            Axios.post("http://localhost:4000/api/autor/login", {
+            Axios.post(config.url_api + "/autor/login", {
                     id: this.autor.id,
                     clave: this.autor.clave,
 

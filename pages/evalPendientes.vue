@@ -41,6 +41,7 @@ a:link {
 </style>
 <script>
 import Axios from "axios";
+import config from "../assets/config"
 
 export default {
   layout: "evaluador",
@@ -51,7 +52,7 @@ export default {
   data() {
     return {
       lista_propuestas: null,
-      url: "http://localhost:4000/api/evaluador/",
+      url: `${config.url_api}/evaluador/`,
       pdf: "",
       byteCharacters: [],
       pub_autor: new Map(),
@@ -87,7 +88,7 @@ export default {
       let pdf = "";
 
       Axios.get(
-        `http://localhost:4000/api/evaluador/espera-evaluar/${ideval}`,
+        `${this.url}espera-evaluar/${ideval}`,
         { headers: { token } }
       )
         .then(res => {

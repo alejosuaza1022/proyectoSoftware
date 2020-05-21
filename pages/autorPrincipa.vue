@@ -31,6 +31,8 @@
 </template>
 
 <script>
+import config from "../assets/config"
+
 export default {
   layout: "autor",
   data() {

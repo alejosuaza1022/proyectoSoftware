@@ -67,6 +67,8 @@ a:link {
 </style>
 <script>
 import Axios from "axios";
+import config from "../assets/config"
+
 export default {
   layout: "autor",
   beforeMount() {
@@ -83,7 +85,7 @@ export default {
       publicacion_revisiones: [],
       id_evaluador:null,
       titulo_pub: "",
-      url: "http://localhost:4000/api/autor/"
+     
     };
   },
   methods: {
@@ -92,7 +94,7 @@ export default {
       let token = evaluador.token;
       let ideval = evaluador.idautor;
       this.id_pub = this.$route.query.id_pub;
-      Axios.get(this.url + `estado-obra/${this.id_pub}/${ideval}`, {
+      Axios.get(config.url_api+`/autor/estado-obra/${this.id_pub}/${ideval}`, {
         headers: { token }
       })
         .then(res => {

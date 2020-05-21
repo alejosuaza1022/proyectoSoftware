@@ -17,6 +17,8 @@
 
 <script>
 import Axios from "axios";
+import config from "../assets/config"
+
 export default {
   layout: "evaluador",
   beforeMount() {
@@ -25,7 +27,7 @@ export default {
   data() {
     return {
       lista_propuestas: null,
-      url: "http://localhost:4000/api/evaluador/"
+      url: `${config.url_api}/evaluador/`
     };
   },
   methods: {
@@ -44,7 +46,7 @@ export default {
         idevaluador: ideval,
         idpublicacionrevision: item.id
       };
-      Axios.post("http://localhost:4000/api/registro_eval", propuesta, {
+      Axios.post(config.url_api+"/registro_eval", propuesta, {
         headers: { token }
       })
         .then(res => {

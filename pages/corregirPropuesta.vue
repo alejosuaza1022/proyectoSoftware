@@ -66,6 +66,7 @@
         tag="article"
         style="max-width: 20rem;"
         class="mb-2 card-pdf"
+        bg-variant="transparent"
       >
         <b-card-text>
           Por favor adjunte su pdf correción aquí
@@ -97,7 +98,7 @@
   padding: 10px;
 }
 .card-pdf {
-  margin: 20px;
+  margin: 10px;
 }
 .margin {
   margin-top: 5px;
@@ -105,6 +106,8 @@
 </style>
 <script>
 import Axios from "axios";
+import config from "../assets/config"
+
 export default {
   layout: "autor",
 

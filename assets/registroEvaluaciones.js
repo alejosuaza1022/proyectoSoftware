@@ -1,6 +1,6 @@
 import Axios from "axios";
 import moment from "moment";
-
+import config from "./config"
 export default {
     layout: "evaluador",
     data() {
@@ -128,7 +128,7 @@ export default {
             corr.id_evaluador = evaluador.idevaluador;
             corr.id = this.$route.query.idrev
 
-            Axios.post(`http://localhost:4000/api/registro_eval`, corr, {
+            Axios.post(config.url_api + `/registro_eval`, corr, {
                 headers: {
                     token
                 }
@@ -159,9 +159,9 @@ export default {
                     subject: "Evaluación de propuesta",
                     attachments: "nuevoPdf.pdf"
                 }
-                Axios.post("http://localhost:4000/api/pdf", generarPDF)
+                Axios.post(config.url_api + "/pdf", generarPDF)
                     .then(res => {
-                        Axios.post("http://localhost:4000/api/mail", notificación)
+                        Axios.post(config.url_api + "/mail", notificación)
                             .then(res => {
                                 console.log(res)
                             })
@@ -220,7 +220,7 @@ export default {
 
             formData.set("fecha_realizada", today);
             console.log("oelo")
-            Axios.put(`http://localhost:4000/api/publicacion_rev/${id}`, formData, {
+            Axios.put(config.url_api + `/publicacion_rev/${id}`, formData, {
                 headers: {
                     token
                 }
@@ -250,7 +250,7 @@ export default {
                 subject: "Retroalimentación de propuesta",
             }
 
-            Axios.post("http://localhost:4000/api/mail", notificación)
+            Axios.post(config.url_api + "/mail", notificación)
                 .then(res => {
                     console.log(res)
                 })

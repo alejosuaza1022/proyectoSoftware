@@ -67,6 +67,8 @@
 
 <script>
 import pdf from "../assets/archivos";
+import config from "../assets/config"
+
 export default {
   layout: "evaluador",
   data() {

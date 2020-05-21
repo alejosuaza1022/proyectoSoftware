@@ -185,6 +185,7 @@
             tag="article"
             style="max-width: 20rem;"
             class="mb-2 card-pdf"
+            bg-variant="transparent"
           >
             <b-card-text>
               Por favor adjunte su pdf correción aquí
