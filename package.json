@@ -18,7 +18,7 @@
         "bootstrap-vue": "^2.0.0",
         "fs": "0.0.1-security",
         "moment": "^2.25.3",
-        "nuxt": "^2.0.0",
+        "nuxt": "^2.15.8",
         "vue-pdf": "^4.0.8",
         "vue-router": "^3.1.6"
     },
